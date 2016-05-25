@@ -57,13 +57,15 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
     Button phoneNumberButton;
     String phoneNumber;
 
-    Button followKitchenButton;
+    ImageView followKitchenImageView;
 
     ArrayList<SimpleCartItem> simpleCartItemsList;
 
     Kitchen kitchen;
     BackendlessUser currentUser;
     String kitchenObjectId;
+
+    Boolean followedFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
         Intent intent = getIntent();
         kitchenObjectId = intent.getStringExtra(OBJECT_ID_EXTRA_KEY);
 
+        followKitchenImageView = (ImageView) findViewById(R.id.image_view_follow_kitchen);
+
 
         new AsyncTask<Void, Void, Kitchen>() {
             @Override
@@ -146,7 +150,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
                     Picasso.with(PlacingOrderActivity.this).load(kitchen.getKitchenPic()).into(kitchenThumbImageView);
 
                     phoneNumber = kitchen.getPhoneNumber();
-                    phoneNumberButton.setText(phoneNumber);
+                    //phoneNumberButton.setText(phoneNumber);
 
 
                     List<DishItem> list = kitchen.getDish().getDishItem();
@@ -155,27 +159,9 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
                 }
 
-
-
             }
         }.execute();
 
-
-        cartIconImageView = (ImageView) findViewById(R.id.image_view_cart_icon);
-        cartIconImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (cartListView.getVisibility() == View.GONE) {
-
-                    cartListView.setVisibility(View.VISIBLE);
-                } else {
-                    cartListView.setVisibility(View.GONE);
-                }
-            }
-        });
-
-
-        followKitchenButton = (Button) findViewById(R.id.image_view_follow_kitchen);
 
         new AsyncTask<Void, Void, Boolean>() {
             @Override
@@ -196,9 +182,10 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
                     List<Kitchen> followed_list = followedKitchen.getFollowed_kitchen_list();
 
                     if(containItem(followed_list,kitchen)) {
-                        Log.e("Hit","hellllll");
+                        Log.e("HitKitchen","hellllll");
                         return true;
                     }else {
+                        Log.e("HitNotKitchen","NONONONO");
                         return false;
                     }
                 }
@@ -208,9 +195,13 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
             @Override
             protected void onPostExecute(Boolean flag) {
                 if(flag) {
-                    followKitchenButton.setText("Unfollow");
+                    followedFlag = true;
+                    followKitchenImageView.setImageResource(R.drawable.followed_icon);
+
                 }else {
-                    followKitchenButton.setText("Follow");
+                    followedFlag = false;
+                    followKitchenImageView.setImageResource(R.drawable.unfollow_icon);
+
                 }
             }
         }.execute();
@@ -218,22 +209,33 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
 
         // Set follow and unfollow listener
-        followKitchenButton.setOnClickListener(new View.OnClickListener() {
+        followKitchenImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (followKitchenButton.getText().toString() == "Unfollow") {
-                    followKitchenButton.setText("Follow");
-                    deleteFollowedKitchen();
-                    //followKitchenButton.setBackgroundColor(getResources().getColor(R.color.blue));
-
-                } else {
-                    followKitchenButton.setText("Unfollow");
-
+                if(followedFlag) {
+                    followedFlag = false;
+                    followKitchenImageView.setImageResource(R.drawable.unfollow_icon);
+                    deleteFollowedKitchen();;
+                }else {
+                    followedFlag = true;
+                    followKitchenImageView.setImageResource(R.drawable.followed_icon);
                     addFollowedKitchen();
-                    //followKitchenButton.setBackgroundColor(getResources().getColor(R.color.white));
                 }
 
+            }
+        });
+
+        cartIconImageView = (ImageView) findViewById(R.id.image_view_cart_icon);
+        cartIconImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cartListView.getVisibility() == View.GONE) {
+
+                    cartListView.setVisibility(View.VISIBLE);
+                } else {
+                    cartListView.setVisibility(View.GONE);
+                }
             }
         });
 
