@@ -1,5 +1,4 @@
 package com.backendless.hk3.login.kitchen_list.adapter;
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +14,6 @@ import com.backendless.hk3.login.placingorder.PlacingOrderActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
 
 /**
  * Created by clover on 5/24/16.
@@ -33,14 +31,14 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     public static class SearchViewHolder extends RecyclerView.ViewHolder {
         protected TextView search_kitchenNameView;
         protected TextView search_categoryView;
-        protected TextView search_dishesNumberView;
+//        protected TextView search_dishesNumberView;
         protected ImageView search_kitchenPic;
 
         public SearchViewHolder(View view) {
             super (view);
             search_kitchenNameView = (TextView) view.findViewById( R.id.search_kitchenName );
             search_categoryView = (TextView) view.findViewById( R.id.search_kitchenCategory );
-            search_dishesNumberView = (TextView) view.findViewById( R.id.search_dishNumber );
+//            search_dishesNumberView = (TextView) view.findViewById( R.id.search_dishNumber );
             search_kitchenPic = (ImageView) view.findViewById(R.id.search_imageView);
         }
     }
@@ -56,12 +54,12 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         kitchenViewHolder.search_kitchenNameView.setText(item.getKitchenName());
         kitchenViewHolder.search_categoryView.setText(item.getCategory());
         final String objectId = item.getObjectId();
-        if (item.getDish() != null) {
-            kitchenViewHolder.search_dishesNumberView.setText(String.valueOf(item.getDish().getDishItem().size()));
-        }
-        else {
-            kitchenViewHolder.search_dishesNumberView.setText("No dish published yet");
-        }
+//        if (item.getDish() != null) {
+//            kitchenViewHolder.search_dishesNumberView.setText(String.valueOf(item.getDish().getDishItem().size()));
+//        }
+//        else {
+//            kitchenViewHolder.search_dishesNumberView.setText("No dish published yet");
+//        }
         //        kitchenViewHolder.dishesNumberView.setText("2");
         Picasso.with(mContext).load(item.getKitchenPic()).into(kitchenViewHolder.search_kitchenPic);
         kitchenViewHolder.search_kitchenPic.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +76,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     public SearchViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_search_res, viewGroup, false);
         return new SearchViewHolder(itemView);
+    }
+
+    public void setData(List<Kitchen> list) {
+        kitchens = list;
+        notifyDataSetChanged();
     }
 }
 

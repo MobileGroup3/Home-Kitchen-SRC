@@ -1,6 +1,7 @@
 package com.backendless.hk3.login.placingorder;
-
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,15 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             addressButton.setText(address);
 
             //phoneNumberButton.setText(kitchen.getPhoneNumber());
+            final String phoneNumber = kitchen.getPhoneNumber();
+            phoneNumberButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + phoneNumber));
+                    context.startActivity(callIntent);
+                }
+            });
 
 
             if(flag) {

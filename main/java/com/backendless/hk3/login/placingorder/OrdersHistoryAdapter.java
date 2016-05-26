@@ -1,3 +1,4 @@
+
 package com.backendless.hk3.login.placingorder;
 
 import android.content.Context;
@@ -139,7 +140,8 @@ public class OrdersHistoryAdapter extends RecyclerView.Adapter<OrdersHistoryAdap
 
     public void setData(List<Order> list) {
         this.orderList = list;
-        notifyDataSetChanged();;
+        notifyDataSetChanged();
 
     }
 }
+

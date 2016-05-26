@@ -1,5 +1,4 @@
 package com.backendless.hk3.login.kitchen_list;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -29,10 +28,6 @@ import com.backendless.persistence.QueryOptions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-
-//import edu.scu.ytong.homekitchen.SettingsActivity;
-
 
 public class KitchenHomepageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -286,6 +281,5 @@ public class KitchenHomepageActivity extends AppCompatActivity
         totalKitchens.addAll( nextPage.getCurrentPage() );
         adapter.notifyDataSetChanged();
     }
-
 
 }

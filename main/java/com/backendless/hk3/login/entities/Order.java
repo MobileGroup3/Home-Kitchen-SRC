@@ -1,13 +1,12 @@
 package com.backendless.hk3.login.entities;
-
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.persistence.BackendlessDataQuery;
 
-public class Order
-{
+public class Order {
+
     private String pickTime;
     private String ownerId;
     private java.util.Date updated;

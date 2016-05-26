@@ -2,22 +2,20 @@ package com.backendless.hk3.login.kitchen_list;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
 import com.backendless.hk3.login.R;
-import com.backendless.persistence.BackendlessDataQuery;
-
-import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.entities.FollowedKitchen;
-import com.backendless.hk3.login.utility.*;
-import com.backendless.hk3.login.kitchen_list.adapter.KitchenListAdapter;
+import com.backendless.hk3.login.entities.Kitchen;
+import com.backendless.hk3.login.kitchen_list.adapter.NormalKitchenAdapter;
+import com.backendless.hk3.login.utility.BackendSettings;
+import com.backendless.persistence.BackendlessDataQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,7 @@ public class FollowedKitchenActivity extends AppCompatActivity {
 
     private RecyclerView followedRecyclerView;
     private LinearLayoutManager llm;
-    private KitchenListAdapter kitchenListAdapter;
+    private NormalKitchenAdapter normalKitchenAdapter;
     private Context mContext;
 
     @Override
@@ -47,8 +45,8 @@ public class FollowedKitchenActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         followedRecyclerView.setLayoutManager(llm);
 
-        kitchenListAdapter = new KitchenListAdapter(this, totalKitchens);
-        followedRecyclerView.setAdapter(kitchenListAdapter);
+        normalKitchenAdapter = new NormalKitchenAdapter(this, totalKitchens);
+        followedRecyclerView.setAdapter(normalKitchenAdapter);
 
         new AsyncTask<Void, Void, FollowedKitchen>() {
             @Override
@@ -75,8 +73,8 @@ public class FollowedKitchenActivity extends AppCompatActivity {
             protected void onPostExecute(FollowedKitchen followedKitchen) {
                 if (followedKitchen != null) {
                     totalKitchens = followedKitchen.getFollowed_kitchen_list();
-                    kitchenListAdapter.setData(totalKitchens);
-                    Log.d("kitchen result: ", totalKitchens.get(0).getKitchenName());
+                    normalKitchenAdapter.setData(totalKitchens);
+//                    Log.d("kitchen result: ", totalKitchens.get(0).getKitchenName());
                 }
             }
         }.execute();

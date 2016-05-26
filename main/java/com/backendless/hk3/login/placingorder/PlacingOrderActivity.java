@@ -1,5 +1,4 @@
 package com.backendless.hk3.login.placingorder;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 public class PlacingOrderActivity extends AppCompatActivity implements DishAddedListener {
 
     public static final String OBJECT_ID_EXTRA_KEY = "object_id_extra_key";
@@ -52,7 +53,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
     ImageView cartIconImageView;
     Button checkOutButton;
 
-//    Button phoneNumberButton;
+    Button phoneNumberButton;
     String phoneNumber;
 
     ImageView followKitchenImageView;
@@ -131,9 +132,17 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 //
 //                    Picasso.with(PlacingOrderActivity.this).load(kitchen.getKitchenPic()).into(kitchenThumbImageView);
 //
-                      phoneNumber = kitchen.getPhoneNumber();
-//                    phoneNumberButton.setText(phoneNumber);
-//
+//                      phoneNumber = kitchen.getPhoneNumber();
+////                    phoneNumberButton.setText(phoneNumber);
+//                    phoneNumberButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+//                            callIntent.setData(Uri.parse("tel:" + phoneNumber));
+//                            startActivity(callIntent);
+//                        }
+//                    });
+////
 //
                     List<DishItem> list = kitchen.getDish().getDishItem();
                     menuAdapter.setData(list,kitchen);
