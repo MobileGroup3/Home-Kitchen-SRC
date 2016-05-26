@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlacingOrderActivity">
+    tools:context="com.backendless.hk3.login.placingorder.PlacingOrderActivity">
+
+
+    <ImageView
+        android:id="@+id/image_view_test"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/followed_icon"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,45 +28,73 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:id="@+id/image_view_kitchen_thumb"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Kitchen Name"
-                android:id="@+id/text_view_kitchen_name" />
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address"
-                android:id="@+id/button_address" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Kitchen Name"
+                    android:id="@+id/text_view_kitchen_name"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="30dp"/>
+
+                <ImageView
+                    android:id="@+id/image_view_follow_kitchen"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <!--android:text="Unfollow" />-->
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button_phone_number"
-                    android:layout_width="wrap_content"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="6503355163"/>
+                    android:id="@+id/button_address"
+                    android:layout_weight="1"/>
 
                 <Button
-                    android:id="@+id/image_view_follow_kitchen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Unfollow" />
+                    android:id="@+id/button_phone_number"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/phone_icon"
+                    android:layout_gravity="center_vertical"
+                   />
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textSize="30dp"
+                android:background="@color/white"
+                android:text="Today's Menu"
+                android:gravity="center_horizontal"
+                android:textColor="@color/orange"/>
 
 
             <android.support.v7.widget.RecyclerView
@@ -66,6 +104,7 @@
                 android:id="@+id/list_view_menu"/>
 
         </LinearLayout>
+
     </ScrollView>
 
     <ListView
