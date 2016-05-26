@@ -1,6 +1,7 @@
 package com.backendless.hk3.login.placingorder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -140,8 +141,17 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
                     String name = kitchen.getKitchenName();
                     kitchenNameTextView.setText(name);
 
-                    String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
+                    final String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
                     addressButton.setText(address);
+                    addressButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + address);
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                            mapIntent.setPackage("com.google.android.apps.maps");
+                            startActivity(mapIntent);
+                        }
+                    });
 
                     Picasso.with(PlacingOrderActivity.this).load(kitchen.getKitchenPic()).into(kitchenThumbImageView);
 

@@ -139,7 +139,7 @@ public class OrdersHistoryAdapter extends RecyclerView.Adapter<OrdersHistoryAdap
 
     public void setData(List<Order> list) {
         this.orderList = list;
-        notifyDataSetChanged();;
+        notifyDataSetChanged();
 
     }
 }

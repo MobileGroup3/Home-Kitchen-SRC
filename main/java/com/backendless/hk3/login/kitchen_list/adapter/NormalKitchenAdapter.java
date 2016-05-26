@@ -3,6 +3,7 @@ package com.backendless.hk3.login.kitchen_list.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +12,19 @@ import android.widget.TextView;
 
 import com.backendless.hk3.login.R;
 import com.backendless.hk3.login.entities.Kitchen;
-import com.backendless.hk3.login.kitchen_list.AutoScrollViewPager;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import edu.scu.ytong.placingorder.PlacingOrderActivity;
+import com.backendless.hk3.login.placingorder.PlacingOrderActivity;
 
 /**
  * Created by clover on 5/25/16.
  */
 public class NormalKitchenAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static enum ITEM_TYPE {ITEM_TYPE_HEADER, ITEM_TYPE_KITCHEN_LIST}
-    private List<Kitchen> kitchens;
-    private Context mContext;
+    private static List<Kitchen> kitchens;
+    private static Context mContext;
 
     public NormalKitchenAdapter(Context context, List<Kitchen> kitchens)
     {
@@ -33,17 +33,15 @@ public class NormalKitchenAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public static class HeaderViewHolder extends RecyclerView.ViewHolder {
-        protected AutoScrollViewPager viewPager;
-        protected CrossFadeAdapter crossAdapter;
+        protected TextView followedTitle;
 
-        public HeaderViewHolder(View view, Context context) {
+        public HeaderViewHolder(View view) {
             super (view);
-            viewPager = (AutoScrollViewPager) view.findViewById(R.id.view_pager);
-            crossAdapter = new CrossFadeAdapter(context);
+            followedTitle = (TextView) view.findViewById(R.id.followed_title);
         }
     }
 
-    public static class KitchenViewHolder extends RecyclerView.ViewHolder {
+    public static class KitchenViewHolder extends RecyclerView.ViewHolder{
         protected TextView kitchenNameView;
         protected TextView categoryView;
         protected TextView dishesNumberView;
@@ -51,10 +49,21 @@ public class NormalKitchenAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public KitchenViewHolder(View view) {
             super (view);
-            kitchenNameView = (TextView) view.findViewById( R.id.kitchenName );
-            categoryView = (TextView) view.findViewById( R.id.kitchenCategory );
+            kitchenNameView = (TextView) view.findViewById( R.id.followed_kitchenName );
+            categoryView = (TextView) view.findViewById( R.id.followed_kitchenCategory );
 //            dishesNumberView = (TextView) view.findViewById( R.id.dishNumber );
-            kitchenPic = (ImageView) view.findViewById(R.id.imageView);
+            kitchenPic = (ImageView) view.findViewById(R.id.followed_imageView);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int i = getPosition();
+                    String objectId = kitchens.get(i-1).getObjectId();
+                    Log.d("kitchen object id ", objectId);
+                    Intent kitchenDetail = new Intent(mContext, PlacingOrderActivity.class);
+                    kitchenDetail.putExtra("object_id_extra_key", objectId);
+                    mContext.startActivity(kitchenDetail);
+                }
+            });
         }
     }
 
@@ -70,7 +79,7 @@ public class NormalKitchenAdapter extends RecyclerView.Adapter<RecyclerView.View
             Kitchen item = kitchens.get(i-1);
             ((KitchenViewHolder)holder).kitchenNameView.setText(item.getKitchenName());
             ((KitchenViewHolder)holder).categoryView.setText(item.getCategory());
-            final String objectId = item.getObjectId();
+//            final String objectId = item.getObjectId();
             /**display dish number */
 //            if (item.getDish() != null) {
 //                ((KitchenViewHolder)holder).dishesNumberView.setText(String.valueOf(item.getDish().getDishItem().size()));
@@ -80,31 +89,36 @@ public class NormalKitchenAdapter extends RecyclerView.Adapter<RecyclerView.View
             //        kitchenViewHolder.dishesNumberView.setText("2");
             Picasso.with(mContext).load(item.getKitchenPic()).resize(512, 512).into(((KitchenViewHolder)holder).kitchenPic);
 
-            ((KitchenViewHolder)holder).kitchenPic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent kitchenDetail = new Intent(mContext, PlacingOrderActivity.class);
-                    kitchenDetail.putExtra("object_id_extra_key", objectId);
-                    mContext.startActivity(kitchenDetail);
-                }
-            });
+//            ((KitchenViewHolder)holder).kitchenPic.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent kitchenDetail = new Intent(mContext, PlacingOrderActivity.class);
+//                    kitchenDetail.putExtra("object_id_extra_key", objectId);
+//                    mContext.startActivity(kitchenDetail);
+//                }
+//            });
             //        DownloadImageTask downloadImageTask = new DownloadImageTask(kitchenViewHolder.kitchenPic);
             //        downloadImageTask.execute(item.getKitchenPic());
         }
         else if (holder instanceof HeaderViewHolder) {
-            ((HeaderViewHolder)holder).viewPager.setAdapter(((HeaderViewHolder)holder).crossAdapter);
-            ((HeaderViewHolder)holder).viewPager.startAutoScroll();
+            Log.d("item count is:", String.valueOf(getItemCount()));
+            if (getItemCount() == 1) {
+                ((HeaderViewHolder)holder).followedTitle.setText("You haven't followed any kitchen yet");
+            }
+            else {
+                ((HeaderViewHolder)holder).followedTitle.setText("Your following list");
+            }
         }
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         if (i == ITEM_TYPE.ITEM_TYPE_HEADER.ordinal()) {
-            View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.header_crossfade, viewGroup, false);
-            return new HeaderViewHolder(itemView, mContext);
+            View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_followed_header, viewGroup, false);
+            return new HeaderViewHolder(itemView);
         }
         else {
-            View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_homepage_row, viewGroup, false);
+            View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_followed_list, viewGroup, false);
             return new KitchenViewHolder(itemView);
         }
     }
