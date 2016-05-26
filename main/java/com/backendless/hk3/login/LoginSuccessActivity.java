@@ -12,6 +12,7 @@ import com.backendless.hk3.login.kitchen.CreateKitchenActivity;
 public class LoginSuccessActivity extends Activity
 {
   private Button logoutButton;
+
     private Button createKitchen;
 
   public void onCreate( Bundle savedInstanceState )
@@ -35,6 +36,7 @@ public class LoginSuccessActivity extends Activity
       }
     } );
 
+
       createKitchen=(Button)findViewById(R.id.createKitchen);
       createKitchen.setOnClickListener( new View.OnClickListener()
       {
@@ -53,6 +55,10 @@ public class LoginSuccessActivity extends Activity
         startActivity(new Intent(LoginSuccessActivity.this, CreateKitchenActivity.class));
         finish();
     }
+
+
+
+
   private void onLogoutButtonClicked()
   {
     Backendless.UserService.logout( new DefaultCallback<Void>( this )

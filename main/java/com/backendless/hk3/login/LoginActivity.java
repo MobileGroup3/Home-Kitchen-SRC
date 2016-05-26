@@ -3,14 +3,21 @@ package com.backendless.hk3.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
+=======
+import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
+>>>>>>> db04e4ed3b71648c1db2d71bb01dcf7d8983694c
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +34,8 @@ import com.backendless.hk3.login.kitchen.CreateKitchenActivity;
 import com.backendless.hk3.login.kitchen.KitchenHomeActivity;
 import com.backendless.hk3.login.kitchen.NotKitchenOwnerActivity;
 import com.backendless.persistence.BackendlessDataQuery;
+import com.backendless.hk3.login.kitchen_list.KitchenHomepageActivity;
+
 
 public class LoginActivity extends Activity
 {
@@ -34,8 +43,11 @@ public class LoginActivity extends Activity
   private EditText identityField, passwordField;
   private Button loginButton;
   private CheckBox rememberLoginBox;
+
   private Button facebookButton;
   private BackendlessUser currentUser;
+
+
 
   @Override
   public void onCreate( Bundle savedInstanceState )
@@ -47,6 +59,7 @@ public class LoginActivity extends Activity
 
     Backendless.setUrl( Defaults.SERVER_URL );
     Backendless.initApp( this, Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION );
+
 
 
     Backendless.UserService.isValidLogin( new DefaultCallback<Boolean>( this )
@@ -67,8 +80,7 @@ public class LoginActivity extends Activity
               {
                 super.handleResponse( currentUser );
                 Backendless.UserService.setCurrentUser( currentUser );
-                startActivity( new Intent( getBaseContext(), LoginSuccessActivity.class ) );
-                finish();
+
               }
             } );
           }
@@ -150,7 +162,7 @@ public class LoginActivity extends Activity
                 super.handleResponse( backendlessUser );
                 boolean isOwner=(Boolean)backendlessUser.getProperty("is_k_owner");
                 if(!isOwner){
-                    startActivity(new Intent(LoginActivity.this,NotKitchenOwnerActivity.class));
+                    startActivity(new Intent(LoginActivity.this,KitchenHomepageActivity.class));
                     finish();
                 }
                 else {
@@ -187,6 +199,11 @@ public class LoginActivity extends Activity
         }, rememberLogin );
     }
 
+
+
+
+
+
   public void onRegisterLinkClicked()
   {
     startActivity( new Intent( this, RegisterActivity.class ) );
@@ -198,6 +215,7 @@ public class LoginActivity extends Activity
     startActivity( new Intent( this, RestorePasswordActivity.class ) );
     finish();
   }
+
 
   public void onLoginWithFacebookButtonClicked()
   {
@@ -219,4 +237,5 @@ public class LoginActivity extends Activity
       }
     } );
   }
+
 }

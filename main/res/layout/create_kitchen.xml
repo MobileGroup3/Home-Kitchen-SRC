@@ -174,19 +174,22 @@
             </TableRow>
 
             <TableRow
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             </TableRow>
 
             <TableRow
-                android:layout_width="fill_parent"
+
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp48"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp48"
+                    android:paddingRight="@dimen/dp4"
                     android:textSize="@dimen/text_medium"
                     android:gravity="center_vertical|right"
                     android:layout_marginRight="@dimen/dp4"
@@ -200,12 +203,16 @@
                     android:src="@android:drawable/ic_menu_gallery"/>
 
 
-
+                <Button
+                    android:layout_width="@dimen/dp144"
+                    android:layout_height="@dimen/dp48"
+                    android:id="@+id/imageUpload"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:textSize="@dimen/text_medium"
+                    android:height="@dimen/dp40"
+                    android:text="@string/uploadButton" />
             </TableRow>
-
-
-
-
 
         </TableLayout>
 
@@ -215,8 +222,9 @@
             android:id="@+id/homepage"
             android:layout_gravity="center_horizontal" />
 
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp144"
             android:layout_height="@dimen/dp48"
             android:id="@+id/createKitchen"
             android:layout_gravity="center_horizontal"

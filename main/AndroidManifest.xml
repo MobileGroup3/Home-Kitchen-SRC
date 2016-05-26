@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-             package="com.backendless.hk3.login"
-             android:versionCode="1"
-             android:versionName="1.0">
+    package="com.backendless.hk3.login"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <uses-sdk
-            android:minSdkVersion="16"
-            android:targetSdkVersion="16"
-            android:maxSdkVersion="21"/>
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
-
-    <application android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light">
-
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
-                android:name=".LoginActivity"
-                android:label="@string/app_name">
+            android:name=".LoginActivity"
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-                            
         <activity android:name=".PasswordRecoveryRequestedActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".RegistrationSuccessActivity" />
@@ -41,5 +43,40 @@
 
 
         <service android:name="com.backendless.AndroidService" />
+
+
+
+        <activity
+            android:name=".kitchen_list.KitchenHomepageActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/HomePageTheme">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity android:name=".kitchen_list.SearchableActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+
+        <service android:name="com.backendless.AndroidService" />
+
+        <activity android:name=".kitchen_list.FollowedKitchenActivity"></activity>
+
+        <activity android:name=".placingorder.PlacingOrderActivity"/>
+        <activity android:name=".placingorder.OrderConformationActivity" />
+        <activity android:name=".placingorder.OrderHistoryActivity" />
+
     </application>
+
 </manifest>
+
