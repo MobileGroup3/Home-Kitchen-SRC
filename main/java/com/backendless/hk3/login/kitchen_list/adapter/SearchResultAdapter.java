@@ -1,5 +1,4 @@
 package com.backendless.hk3.login.kitchen_list.adapter;
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -84,3 +83,4 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         notifyDataSetChanged();
     }
 }
+

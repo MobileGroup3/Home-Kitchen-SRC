@@ -1,7 +1,5 @@
 package com.backendless.hk3.login.placingorder;
-
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,19 +25,19 @@ import com.backendless.hk3.login.entities.OrderItem;
 import com.backendless.hk3.login.entities.SimpleCartItem;
 import com.backendless.hk3.login.utility.BackendSettings;
 import com.backendless.persistence.BackendlessDataQuery;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 public class PlacingOrderActivity extends AppCompatActivity implements DishAddedListener {
 
-
     public static final String OBJECT_ID_EXTRA_KEY = "object_id_extra_key";
-    ImageView kitchenThumbImageView;
-    TextView kitchenNameTextView;
-    Button addressButton;
+//    ImageView kitchenThumbImageView;
+//    TextView kitchenNameTextView;
+//    Button addressButton;
 
     RecyclerView menuRecyclerView;
     LinearLayoutManager llm;
@@ -66,36 +64,22 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
     BackendlessUser currentUser;
     String kitchenObjectId;
 
-    Boolean followedFlag;
+    boolean followedFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_placing_order);
 
         Backendless.initApp(
                 this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
         currentUser = Backendless.UserService.CurrentUser();
 
-//        Backendless.UserService.login("tongying@gmail.com", "123", new AsyncCallback<BackendlessUser>() {
-//            @Override
-//            public void handleResponse(BackendlessUser response) {
-//                currentUser = response;
-//
-//            }
-//
-//            @Override
-//            public void handleFault(BackendlessFault fault) {
-//
-//            }
-//        });
+//        kitchenThumbImageView = (ImageView) findViewById(R.id.image_view_kitchen_thumb);
+//        kitchenNameTextView = (TextView) findViewById(R.id.text_view_kitchen_name);
+//        addressButton = (Button) findViewById(R.id.button_address);
+//        phoneNumberButton = (Button) findViewById(R.id.button_phone_number);
 
-
-        kitchenThumbImageView = (ImageView) findViewById(R.id.image_view_kitchen_thumb);
-        kitchenNameTextView = (TextView) findViewById(R.id.text_view_kitchen_name);
-        addressButton = (Button) findViewById(R.id.button_address);
-        phoneNumberButton = (Button) findViewById(R.id.button_phone_number);
         totalAmountTextView = (TextView) findViewById(R.id.text_view_total_amount);
 
 
@@ -106,7 +90,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
         menuRecyclerView.addItemDecoration(new SpaceItemDecoration(this, R.dimen.menu_item_space, true, false));
 
         dishItemList = new ArrayList<DishItem>();
-        menuAdapter = new MenuAdapter(this, dishItemList, this);
+        kitchen = new Kitchen();
+        menuAdapter = new MenuAdapter(this, dishItemList, kitchen,this,followedFlag);
         menuRecyclerView.setAdapter(menuAdapter);
 
         shoppingCartList = new ArrayList<OrderItem>();
@@ -118,9 +103,6 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
         Intent intent = getIntent();
         kitchenObjectId = intent.getStringExtra(OBJECT_ID_EXTRA_KEY);
-
-        followKitchenImageView = (ImageView) findViewById(R.id.image_view_follow_kitchen);
-
 
         new AsyncTask<Void, Void, Kitchen>() {
             @Override
@@ -142,37 +124,28 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
                     Toast.makeText(getApplicationContext(),"The owner haven't create menu!",Toast.LENGTH_SHORT).show();
 
                 } else {
-                    String name = kitchen.getKitchenName();
-                    kitchenNameTextView.setText(name);
-
-                    final String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
-                    addressButton.setText(address);
-                    addressButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + address);
-                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                            mapIntent.setPackage("com.google.android.apps.maps");
-                            startActivity(mapIntent);
-                        }
-                    });
-
-                    Picasso.with(PlacingOrderActivity.this).load(kitchen.getKitchenPic()).into(kitchenThumbImageView);
-
-                    phoneNumber = kitchen.getPhoneNumber();
-                    //phoneNumberButton.setText(phoneNumber);
-                    phoneNumberButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent callIntent = new Intent(Intent.ACTION_CALL);
-                            callIntent.setData(Uri.parse("tel:" + phoneNumber));
-                            startActivity(callIntent);
-                        }
-                    });
-
-
+//                    String name = kitchen.getKitchenName();
+//                    kitchenNameTextView.setText(name);
+//
+//                    String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
+//                    addressButton.setText(address);
+//
+//                    Picasso.with(PlacingOrderActivity.this).load(kitchen.getKitchenPic()).into(kitchenThumbImageView);
+//
+//                      phoneNumber = kitchen.getPhoneNumber();
+////                    phoneNumberButton.setText(phoneNumber);
+//                    phoneNumberButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+//                            callIntent.setData(Uri.parse("tel:" + phoneNumber));
+//                            startActivity(callIntent);
+//                        }
+//                    });
+////
+//
                     List<DishItem> list = kitchen.getDish().getDishItem();
-                    menuAdapter.setData(list);
+                    menuAdapter.setData(list,kitchen);
 
 
                 }
@@ -180,6 +153,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
             }
         }.execute();
 
+
+//        followKitchenImageView = (ImageView) findViewById(R.id.image_view_follow_kitchen);
 
         new AsyncTask<Void, Void, Boolean>() {
             @Override
@@ -212,37 +187,16 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
             @Override
             protected void onPostExecute(Boolean flag) {
-                if(flag) {
-                    followedFlag = true;
-                    followKitchenImageView.setImageResource(R.drawable.followed_icon);
+                menuAdapter.setFlagData(flag);
 
-                }else {
-                    followedFlag = false;
-                    followKitchenImageView.setImageResource(R.drawable.unfollow_icon);
-
-                }
             }
         }.execute();
 
 
 
         // Set follow and unfollow listener
-        followKitchenImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if(followedFlag) {
-                    followedFlag = false;
-                    followKitchenImageView.setImageResource(R.drawable.unfollow_icon);
-                    deleteFollowedKitchen();;
-                }else {
-                    followedFlag = true;
-                    followKitchenImageView.setImageResource(R.drawable.followed_icon);
-                    addFollowedKitchen();
-                }
 
-            }
-        });
 
         cartIconImageView = (ImageView) findViewById(R.id.image_view_cart_icon);
         cartIconImageView.setOnClickListener(new View.OnClickListener() {
@@ -272,7 +226,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
                     intent.putParcelableArrayListExtra("cart_list_extra_key", simpleCartItemsList);
                     intent.putExtra("total_amount_extra_key", totalAmount);
-                    intent.putExtra("address_extra_key", addressButton.getText());
+                    String address = kitchen.getStreet() + kitchen.getCity() + kitchen.getZipcode();
+                    intent.putExtra("address_extra_key", address);
                     intent.putExtra("phone_number_extra_key", phoneNumber);
                     intent.putExtra("kitchen_object_id_extra_key",kitchen.getObjectId());
                     intent.putExtra("kitchen_name_extra_key",kitchen.getKitchenName());

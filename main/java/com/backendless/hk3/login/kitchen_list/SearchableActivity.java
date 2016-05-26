@@ -1,17 +1,16 @@
 package com.backendless.hk3.login.kitchen_list;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.kitchen_list.adapter.SearchResultAdapter;
 import com.backendless.hk3.login.utility.BackendSettings;
 import com.backendless.persistence.BackendlessDataQuery;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,5 +122,15 @@ public class SearchableActivity extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.likes) {
+            Intent likedKitchen = new Intent(SearchableActivity.this, FollowedKitchenActivity.class);
+            startActivity(likedKitchen);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

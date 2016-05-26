@@ -140,7 +140,6 @@
             android:textSize="@dimen/text_medium"/>
 
         <Button
-<<<<<<< HEAD
             android:id="@+id/loginFacebookButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp48"
@@ -149,23 +148,16 @@
             android:background="@drawable/btn_facebook_bg"
             android:text="@string/facebook"/>
 
-=======
-            android:id="@+id/loginButton"
-            android:layout_width="@dimen/dp144"
-            android:layout_height="@dimen/dp48"
-            android:layout_marginLeft="@dimen/dp4"
-            android:text="@string/login_text"
-            android:textSize="@dimen/text_medium"/>
->>>>>>> db04e4ed3b71648c1db2d71bb01dcf7d8983694c
+
     </LinearLayout>
-                                    
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/dp4"
         android:gravity="center"
         android:orientation="vertical">
-<<<<<<< HEAD
+
 
         <Button
             android:id="@+id/loginButton"
@@ -175,9 +167,7 @@
             android:text="@string/login_text"
             android:textSize="@dimen/text_medium"
             android:layout_gravity="center_horizontal" />
-=======
-                                    
->>>>>>> db04e4ed3b71648c1db2d71bb01dcf7d8983694c
+
     </LinearLayout>
 
     <ProgressBar

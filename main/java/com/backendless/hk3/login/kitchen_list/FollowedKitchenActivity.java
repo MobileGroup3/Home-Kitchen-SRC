@@ -1,24 +1,25 @@
 package com.backendless.hk3.login.kitchen_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
 import com.backendless.hk3.login.R;
-import com.backendless.hk3.login.kitchen_list.adapter.NormalKitchenAdapter;
-import com.backendless.persistence.BackendlessDataQuery;
-
-import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.entities.FollowedKitchen;
-import com.backendless.hk3.login.utility.*;
-import com.backendless.hk3.login.kitchen_list.adapter.KitchenListAdapter;
+import com.backendless.hk3.login.entities.Kitchen;
+import com.backendless.hk3.login.kitchen_list.adapter.NormalKitchenAdapter;
+import com.backendless.hk3.login.utility.BackendSettings;
+import com.backendless.persistence.BackendlessDataQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,5 +82,23 @@ public class FollowedKitchenActivity extends AppCompatActivity {
                 }
             }
         }.execute();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.likes) {
+            Intent likedKitchen = new Intent(FollowedKitchenActivity.this, FollowedKitchenActivity.class);
+            startActivity(likedKitchen);
+//            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

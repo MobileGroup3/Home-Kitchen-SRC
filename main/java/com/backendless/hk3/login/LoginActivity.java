@@ -3,21 +3,16 @@ package com.backendless.hk3.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
-=======
-import android.support.v7.app.AppCompatActivity;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
->>>>>>> db04e4ed3b71648c1db2d71bb01dcf7d8983694c
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
