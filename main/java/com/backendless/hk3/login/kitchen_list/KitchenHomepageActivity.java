@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
+import com.backendless.BackendlessUser;
 import com.backendless.hk3.login.R;
 import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.kitchen_list.adapter.KitchenListAdapter;

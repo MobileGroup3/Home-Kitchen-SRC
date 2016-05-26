@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.backendless.hk3.login.placingorder.PlacingOrderActivity">
 
-
-    <ImageView
-        android:id="@+id/image_view_test"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/followed_icon"
-        />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -161,6 +161,14 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
                     phoneNumber = kitchen.getPhoneNumber();
                     //phoneNumberButton.setText(phoneNumber);
+                    phoneNumberButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+                            callIntent.setData(Uri.parse("tel:" + phoneNumber));
+                            startActivity(callIntent);
+                        }
+                    });
 
 
                     List<DishItem> list = kitchen.getDish().getDishItem();
