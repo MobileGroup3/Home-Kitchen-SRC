@@ -1,4 +1,5 @@
 package com.backendless.hk3.login.placingorder;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -65,6 +66,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
     String kitchenObjectId;
 
     boolean followedFlag = false;
+    //ViewGroup bottomShoppingCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,9 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
         Backendless.initApp(
                 this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
         currentUser = Backendless.UserService.CurrentUser();
+
+        //bottomShoppingCart= (ViewGroup) findViewById(R.id.layout_bottom_cart);
+
 
 //        kitchenThumbImageView = (ImageView) findViewById(R.id.image_view_kitchen_thumb);
 //        kitchenNameTextView = (TextView) findViewById(R.id.text_view_kitchen_name);
@@ -435,4 +440,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
         }
         return false;
     }
+
+
+
+
 }
