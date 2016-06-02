@@ -7,10 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import com.backendless.Backendless;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.hk3.login.kitchen.CreateKitchenActivity;
+
 
 public class LoginSuccessActivity extends Activity
 {
   private Button logoutButton;
+
+    private Button createKitchen;
 
   public void onCreate( Bundle savedInstanceState )
   {
@@ -32,7 +36,29 @@ public class LoginSuccessActivity extends Activity
         onLogoutButtonClicked();
       }
     } );
+
+
+      createKitchen=(Button)findViewById(R.id.createKitchen);
+      createKitchen.setOnClickListener( new View.OnClickListener()
+      {
+          @Override
+          public void onClick( View view )
+          {
+              onCreateButtonClicked();
+          }
+      } );
+
+
   }
+
+
+    private void onCreateButtonClicked(){
+        startActivity(new Intent(LoginSuccessActivity.this, CreateKitchenActivity.class));
+        finish();
+    }
+
+
+
 
   private void onLogoutButtonClicked()
   {

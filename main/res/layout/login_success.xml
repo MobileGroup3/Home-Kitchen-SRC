@@ -36,6 +36,16 @@
                 android:id="@+id/logoutButton"
                 android:layout_marginTop="@dimen/dp16"
                 android:textSize="@dimen/text_medium"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp48"
+            android:text="@string/startKitchen"
+            android:id="@+id/createKitchen"
+            android:layout_marginTop="@dimen/dp16"
+            android:textSize="@dimen/text_medium"/>
+
     </LinearLayout>
 
 </LinearLayout>

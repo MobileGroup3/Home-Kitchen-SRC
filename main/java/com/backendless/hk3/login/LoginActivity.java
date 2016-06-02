@@ -3,19 +3,34 @@ package com.backendless.hk3.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.backendless.Backendless;
-import com.backendless.BackendlessUser;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+
+import com.backendless.Backendless;
+import com.backendless.BackendlessCollection;
+import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.backendless.hk3.data.Kitchen;
+import com.backendless.hk3.login.kitchen.CreateKitchenActivity;
+import com.backendless.hk3.login.kitchen.KitchenHomeActivity;
+import com.backendless.hk3.login.kitchen.NotKitchenOwnerActivity;
+import com.backendless.persistence.BackendlessDataQuery;
 import com.backendless.hk3.login.kitchen_list.KitchenHomepageActivity;
+
 
 public class LoginActivity extends Activity
 {
@@ -23,6 +38,11 @@ public class LoginActivity extends Activity
   private EditText identityField, passwordField;
   private Button loginButton;
   private CheckBox rememberLoginBox;
+
+  private Button facebookButton;
+  private BackendlessUser currentUser;
+
+
 
   @Override
   public void onCreate( Bundle savedInstanceState )
@@ -34,6 +54,8 @@ public class LoginActivity extends Activity
 
     Backendless.setUrl( Defaults.SERVER_URL );
     Backendless.initApp( this, Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION );
+
+
 
     Backendless.UserService.isValidLogin( new DefaultCallback<Boolean>( this )
     {
@@ -53,8 +75,7 @@ public class LoginActivity extends Activity
               {
                 super.handleResponse( currentUser );
                 Backendless.UserService.setCurrentUser( currentUser );
-                startActivity( new Intent( getBaseContext(), KitchenHomepageActivity.class ) );
-                finish();
+
               }
             } );
           }
@@ -73,6 +94,7 @@ public class LoginActivity extends Activity
     passwordField = (EditText) findViewById( R.id.passwordField );
     loginButton = (Button) findViewById( R.id.loginButton );
     rememberLoginBox = (CheckBox) findViewById( R.id.rememberLoginBox );
+    facebookButton = (Button) findViewById( R.id.loginFacebookButton );
 
     String tempString = getResources().getString( R.string.register_text );
     SpannableString underlinedContent = new SpannableString( tempString );
@@ -109,24 +131,73 @@ public class LoginActivity extends Activity
         onRestoreLinkClicked();
       }
     } );
-  }
 
-  public void onLoginButtonClicked()
-  {
-    String identity = identityField.getText().toString();
-    String password = passwordField.getText().toString();
-    boolean rememberLogin = rememberLoginBox.isChecked();
-
-    Backendless.UserService.login( identity, password, new DefaultCallback<BackendlessUser>( LoginActivity.this )
+    facebookButton.setOnClickListener( new View.OnClickListener()
     {
-      public void handleResponse( BackendlessUser backendlessUser )
+      @Override
+      public void onClick( View view )
       {
-        super.handleResponse( backendlessUser );
-        startActivity( new Intent( LoginActivity.this, KitchenHomepageActivity.class ) );
-        finish();
+        onLoginWithFacebookButtonClicked();
       }
-    }, rememberLogin );
+    } );
   }
+
+
+
+    public void onLoginButtonClicked()
+    {
+        String identity = identityField.getText().toString();
+        String password = passwordField.getText().toString();
+        final boolean rememberLogin = rememberLoginBox.isChecked();
+
+        Backendless.UserService.login( identity, password, new DefaultCallback<BackendlessUser>( LoginActivity.this )
+        {
+            public void handleResponse( BackendlessUser backendlessUser )
+            {
+                super.handleResponse( backendlessUser );
+                boolean isOwner=(Boolean)backendlessUser.getProperty("is_k_owner");
+                if(!isOwner){
+                    startActivity(new Intent(LoginActivity.this,KitchenHomepageActivity.class));
+                    finish();
+                }
+                else {
+                    String userID=backendlessUser.getObjectId();
+                    String whereClause="owner.objectId = '"+userID+"'";
+                    final BackendlessDataQuery dataQuery=new BackendlessDataQuery();
+                    dataQuery.setWhereClause(whereClause);
+                    Backendless.Persistence.of(Kitchen.class).find(dataQuery, new AsyncCallback<BackendlessCollection<Kitchen>>() {
+                        @Override
+                        public void handleResponse(BackendlessCollection<Kitchen> response) {
+                            if(response.getCurrentPage().size()==0){
+                                Intent intent1=new Intent(LoginActivity.this,CreateKitchenActivity.class);
+                                startActivity(intent1);
+                                finish();
+                            }
+                            else{
+                                Kitchen k=response.getCurrentPage().get(0);
+                                Intent intent2=new Intent(LoginActivity.this,KitchenHomeActivity.class);
+                                intent2.putExtra("kitchen_objectID",k.getObjectId());
+                                startActivity(intent2);
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                            Log.i("isOwner",fault.getMessage()+" "+fault.getDetail());
+                        }
+                    });
+                }
+
+
+            }
+        }, rememberLogin );
+    }
+
+
+
+
+
 
   public void onRegisterLinkClicked()
   {
@@ -139,4 +210,27 @@ public class LoginActivity extends Activity
     startActivity( new Intent( this, RestorePasswordActivity.class ) );
     finish();
   }
+
+
+  public void onLoginWithFacebookButtonClicked()
+  {
+    Map<String, String> facebookFieldsMapping = new HashMap<>();
+    facebookFieldsMapping.put( "name", "name" );
+    facebookFieldsMapping.put( "gender", "gender" );
+    facebookFieldsMapping.put( "email", "email" );
+
+    List<String> facebookPermissions = new ArrayList<>();
+    facebookPermissions.add( "email" );
+
+    Backendless.UserService.loginWithFacebook( LoginActivity.this, null, facebookFieldsMapping, facebookPermissions, new SocialCallback<BackendlessUser>( LoginActivity.this )
+    {
+      @Override
+      public void handleResponse( BackendlessUser backendlessUser )
+      {
+        startActivity( new Intent( getBaseContext(), LoginSuccessActivity.class ) );
+        finish();
+      }
+    } );
+  }
+
 }

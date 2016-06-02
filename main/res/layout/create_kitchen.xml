@@ -174,7 +174,15 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="fill_parent"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
+            <TableRow
+
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp48"
                 android:gravity="center_horizontal">
 
@@ -187,6 +195,14 @@
                     android:layout_marginRight="@dimen/dp4"
                     android:text="@string/imageUpload" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp48"
+                    android:id="@+id/imageView"
+                    android:height="@dimen/dp40"
+                    android:src="@android:drawable/ic_menu_gallery"/>
+
+
                 <Button
                     android:layout_width="@dimen/dp144"
                     android:layout_height="@dimen/dp48"
@@ -196,15 +212,16 @@
                     android:textSize="@dimen/text_medium"
                     android:height="@dimen/dp40"
                     android:text="@string/uploadButton" />
-
-
             </TableRow>
 
-
-
-
-
         </TableLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/homepage"
+            android:layout_gravity="center_horizontal" />
+
 
         <Button
             android:layout_width="@dimen/dp144"

@@ -71,5 +71,4 @@
         android:text="Today's Menu"
         android:gravity="center_horizontal"
         android:textColor="@color/orange"/>
-
 </LinearLayout>

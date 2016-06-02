@@ -102,12 +102,13 @@ public class NormalKitchenAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         else if (holder instanceof HeaderViewHolder) {
             Log.d("item count is:", String.valueOf(getItemCount()));
-            if (getItemCount() == 1) {
-                ((HeaderViewHolder)holder).followedTitle.setText("You haven't followed any kitchen yet");
-            }
-            else {
-                ((HeaderViewHolder)holder).followedTitle.setText("Your following list");
-            }
+//            if (getItemCount() == 1) {
+//                ((HeaderViewHolder)holder).followedTitle.setText("You haven't followed any kitchen yet");
+//            }
+//            else {
+//                ((HeaderViewHolder)holder).followedTitle.setText("Your following list");
+//            }
+            ((HeaderViewHolder)holder).followedTitle.setText("Your following list");
         }
     }
 

@@ -61,8 +61,16 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             String name = kitchen.getKitchenName();
             kitchenNameTextView.setText(name);
 
-            String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
+            final String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
             addressButton.setText(address);
+            addressButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + address);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    context.startActivity(mapIntent);
+                }
+            });
 
             //phoneNumberButton.setText(kitchen.getPhoneNumber());
             final String phoneNumber = kitchen.getPhoneNumber();

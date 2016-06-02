@@ -1,11 +1,15 @@
 package com.backendless.hk3.login.kitchen_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
@@ -78,5 +82,23 @@ public class FollowedKitchenActivity extends AppCompatActivity {
                 }
             }
         }.execute();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.likes) {
+            Intent likedKitchen = new Intent(FollowedKitchenActivity.this, FollowedKitchenActivity.class);
+            startActivity(likedKitchen);
+//            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -121,5 +122,15 @@ public class SearchableActivity extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.likes) {
+            Intent likedKitchen = new Intent(SearchableActivity.this, FollowedKitchenActivity.class);
+            startActivity(likedKitchen);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

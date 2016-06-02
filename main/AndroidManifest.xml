@@ -34,7 +34,18 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".RegistrationSuccessActivity" />
         <activity android:name=".RestorePasswordActivity" />
+                            
         <activity android:name=".LoginSuccessActivity" />
+        <activity android:name=".kitchen.CreateKitchenActivity"/>
+        <activity android:name=".kitchen.CreateOrEditDishActivity"/>
+        <activity android:name=".kitchen.KitchenHomeActivity"/>
+        <activity android:name=".kitchen.NotKitchenOwnerActivity"/>
+
+
+        <service android:name="com.backendless.AndroidService" />
+
+
+
         <activity
             android:name=".kitchen_list.KitchenHomepageActivity"
             android:configChanges="orientation|screenSize"
