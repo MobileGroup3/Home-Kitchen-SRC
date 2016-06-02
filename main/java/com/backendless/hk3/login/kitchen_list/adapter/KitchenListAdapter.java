@@ -2,6 +2,7 @@ package com.backendless.hk3.login.kitchen_list.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,6 +93,9 @@ public class KitchenListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         else if (holder instanceof HeaderViewHolder) {
             ((HeaderViewHolder)holder).viewPager.setAdapter(((HeaderViewHolder)holder).crossAdapter);
             ((HeaderViewHolder)holder).viewPager.startAutoScroll();
+            /** If using staggered layout manager, need to set following, but now the staggering layout still have some problem */
+//            StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+//            layoutParams.setFullSpan(true);
         }
     }
 
@@ -114,6 +118,16 @@ public class KitchenListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void setData(List<Kitchen> list) {
         kitchens = list;
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        kitchens.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Kitchen> list) {
+        kitchens.addAll(list);
         notifyDataSetChanged();
     }
 
