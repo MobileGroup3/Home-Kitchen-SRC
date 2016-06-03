@@ -72,6 +72,46 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
 
         Backendless.initApp(this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
 
+//        String channelName = "test";
+//        Backendless.Messaging.subscribe( channelName,
+//                new AsyncCallback<List<Message>>()
+//                {
+//                    public void handleResponse( List<Message> response )
+//                    {
+//                        for( Message message : response )
+//                        {
+//                            String publisherId = message.getPublisherId();
+//                            Object data = message.getData();
+//                        }
+//                    }
+//                    public void handleFault( BackendlessFault fault )
+//                    {
+//                        Toast.makeText( OrderConformationActivity.this, fault.getMessage(), Toast.LENGTH_SHORT ).show();                                       }
+//                },
+//                new AsyncCallback<Subscription>()
+//                {
+//                    public void handleResponse( Subscription response )
+//                    {
+//                        Subscription subscription = response;
+//                    }
+//                    public void handleFault( BackendlessFault fault )
+//                    {
+//                        Toast.makeText( OrderConformationActivity.this, fault.getMessage(), Toast.LENGTH_SHORT ).show();
+//                    }
+//                }
+//        );
+
+//        Backendless.Messaging.registerDevice("homekitchen-1330", "default", new AsyncCallback<Void>() {
+//            @Override
+//            public void handleResponse(Void response) {
+//
+//            }
+//
+//            @Override
+//            public void handleFault(BackendlessFault fault) {
+//
+//            }
+//        });
 
         customer = Backendless.UserService.CurrentUser();
 //        Backendless.UserService.login("tongying@gmail.com", "123", new AsyncCallback<BackendlessUser>() {

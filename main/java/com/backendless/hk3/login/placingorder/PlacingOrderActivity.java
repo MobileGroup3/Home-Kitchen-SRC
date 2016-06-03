@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
 import com.backendless.hk3.login.R;
 import com.backendless.hk3.login.entities.Dish;
 import com.backendless.hk3.login.entities.DishItem;
@@ -25,6 +27,10 @@ import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.entities.OrderItem;
 import com.backendless.hk3.login.entities.SimpleCartItem;
 import com.backendless.hk3.login.utility.BackendSettings;
+import com.backendless.messaging.DeliveryOptions;
+import com.backendless.messaging.MessageStatus;
+import com.backendless.messaging.PublishOptions;
+import com.backendless.messaging.PushBroadcastMask;
 import com.backendless.persistence.BackendlessDataQuery;
 
 import java.util.ArrayList;
@@ -67,6 +73,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
     boolean followedFlag = false;
     //ViewGroup bottomShoppingCart;
+    //Object message = "hello";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,56 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
         Backendless.initApp(
                 this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
         currentUser = Backendless.UserService.CurrentUser();
+
+
+
+        String chanel = "test";
+
+
+        PublishOptions publishOptions = new PublishOptions();
+        publishOptions.putHeader( "city", "Tokyo" );
+        Object message = "hellooooooo";
+        DeliveryOptions deliveryOptions = new DeliveryOptions();
+        deliveryOptions.setPushBroadcast(PushBroadcastMask.ALL);
+
+        Backendless.Messaging.publish(chanel,
+                message,
+                publishOptions,
+                new AsyncCallback<MessageStatus>() {
+                    @Override
+                    public void handleResponse(MessageStatus response) {
+                        Log.e("login_publish_success",response.toString());
+                    }
+
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+                        Log.e("login_publish_fail",fault.toString());
+
+                    }
+                });
+
+
+
+
+
+
+
+//        AsyncCallback<List<Message>> subscriptionResponder = new AsyncCallback<List<Message>>()
+//        {
+//            public void handleResponse( List<Message> response )
+//            {
+//            }
+//            public void handleFault( BackendlessFault fault )
+//            {
+//            }
+//        };
+
+//        SubscriptionOptions subscriptionOptions = new SubscriptionOptions();
+//        subscriptionOptions.setSelector( "city='Tokyo'" );
+//
+//        Backendless.Messaging.subscribe( subscriptionResponder, subscriptionOptions );
+//
+//
 
         //bottomShoppingCart= (ViewGroup) findViewById(R.id.layout_bottom_cart);
 
