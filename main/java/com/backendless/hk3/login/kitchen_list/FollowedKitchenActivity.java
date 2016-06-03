@@ -38,6 +38,7 @@ public class FollowedKitchenActivity extends MyAppBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_followed_kitchen);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Backendless.initApp(this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
         currentUser = Backendless.UserService.CurrentUser();

@@ -14,9 +14,13 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
+import com.backendless.BackendlessUser;
+import com.backendless.hk3.login.LoginActivity;
 import com.backendless.hk3.login.R;
 import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.kitchen_list.adapter.KitchenListAdapter;
@@ -44,21 +48,14 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
     private int visibleItemCount;
     private int totalItemCount;
     private BackendlessDataQuery query;
+    private TextView userName;
+    private TextView userEmail;
+    private BackendlessUser current_user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen_homepage);
-
-        /** Lookup the swipe container view */
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-        swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-        swipeRefreshLayout.setProgressViewOffset(true, 50, 100);
-//        swipeRefreshLayout.setRefreshing(true);
 
         /** Navigation Drawer  */
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -73,6 +70,20 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerLayout = navigationView.getHeaderView(0);
+
+        userName = (TextView)headerLayout.findViewById(R.id.user_name);
+        userEmail = (TextView)headerLayout.findViewById(R.id.user_email);
+
+        /** Lookup the swipe container view */
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeRefreshLayout.setProgressViewOffset(true, 50, 100);
+//        swipeRefreshLayout.setRefreshing(true);
 
         /** Set adapter */
         recList = (RecyclerView) findViewById(R.id.kitchenList);
@@ -101,12 +112,16 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
 
         /** Connect to Backendless to do database manipulations */
         Backendless.initApp(this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
+        current_user = Backendless.UserService.CurrentUser();
 
         QueryOptions queryOptions = new QueryOptions();
         queryOptions.setRelated(Arrays.asList("dish"));
 
         query = new BackendlessDataQuery(queryOptions);
         retrieveData(query);
+
+        userName.setText((String) current_user.getProperty("name"));
+        userEmail.setText(current_user.getEmail());
     }
 
 
@@ -132,10 +147,9 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
         } else if (id == R.id.nav_profile) {
 
         } else if (id == R.id.nav_log) {
-             // Add Log Out
-//            Intent logIntent = new Intent(this, edu.scu.ytong.homekitchen.LoginActivity.class);
-//            startActivity(logIntent);
-
+            userLogout();
+            Intent logoutIntent = new Intent(this, LoginActivity.class);
+            startActivity(logoutIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -170,28 +184,34 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
         });
 
         recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            int mLastFirstVisibleItem = 0;
+
             @Override
             public void onScrollStateChanged(RecyclerView view, int scrollState) {
-
             }
 
             @Override
             public void onScrolled(RecyclerView view, int dx, int dy) {
+                super.onScrolled(recList, dx, dy);
                 if (dy > 0) {
                     visibleItemCount = glm.getChildCount();
                     totalItemCount = glm.getItemCount();
                     firstVisibleItem = glm.findFirstVisibleItemPosition();
 
+                    if (firstVisibleItem > this.mLastFirstVisibleItem) {
+                        KitchenHomepageActivity.this.getSupportActionBar().show();
+                    } else if (firstVisibleItem < this.mLastFirstVisibleItem) {
+                        KitchenHomepageActivity.this.getSupportActionBar().hide();
+                    }
+                    this.mLastFirstVisibleItem = firstVisibleItem;
+
                     if (needToLoadItems(firstVisibleItem, visibleItemCount, totalItemCount)) {
                         isLoadingItems = true;
-
                         kitchen.nextPage(new LoadingCallback<BackendlessCollection<Kitchen>>(KitchenHomepageActivity.this) {
                             @Override
                             public void handleResponse(BackendlessCollection<Kitchen> nextPage) {
                                 kitchen = nextPage;
-
                                 addMoreItems(nextPage);
-
                                 isLoadingItems = false;
                             }
                         });

@@ -60,7 +60,6 @@
         <activity android:name=".kitchen.KitchenHomeActivity" />
         <activity android:name=".kitchen.NotKitchenOwnerActivity" />
 
-        <service android:name="com.backendless.AndroidService" />
 
         <activity
             android:name=".kitchen_list.KitchenHomepageActivity"
@@ -72,9 +71,11 @@
         </activity>
         <activity
             android:name=".kitchen_list.SearchableActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:parentActivityName=".kitchen_list.KitchenHomepageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -83,18 +84,25 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".kitchen_list.KitchenHomepageActivity" />
         </activity>
 
-        <!-- <meta-data -->
-        <!-- android:name="android.HK3-Login.searchable" -->
-        <!-- android:resource="@xml/searchable" /> -->
+        <activity
+            android:name=".kitchen_list.FollowedKitchenActivity"
+            android:parentActivityName=".kitchen_list.KitchenHomepageActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".kitchen_list.KitchenHomepageActivity" />
+        </activity>
 
-        <service android:name="com.backendless.AndroidService" />
 
-        <activity android:name=".kitchen_list.FollowedKitchenActivity" />
         <activity android:name=".placingorder.PlacingOrderActivity" />
         <activity android:name=".placingorder.OrderConformationActivity" />
         <activity android:name=".placingorder.OrderHistoryActivity" />
+
+        <service android:name="com.backendless.AndroidService" />
     </application>
 
 </manifest>
