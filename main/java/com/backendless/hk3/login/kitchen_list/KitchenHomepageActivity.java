@@ -13,14 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 import com.backendless.hk3.login.R;
 import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.kitchen_list.adapter.KitchenListAdapter;
@@ -34,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class KitchenHomepageActivity extends AppCompatActivity
+public class KitchenHomepageActivity extends MyAppBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener {
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -50,7 +46,7 @@ public class KitchenHomepageActivity extends AppCompatActivity
     private BackendlessDataQuery query;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen_homepage);
 
@@ -113,140 +109,6 @@ public class KitchenHomepageActivity extends AppCompatActivity
         retrieveData(query);
     }
 
-//        Backendless.Data.of(Kitchen.class).find(query, new LoadingCallback<BackendlessCollection<Kitchen>>(this, getString(R.string.loading_kitchens), true) {
-//            @Override
-//            public void handleResponse(BackendlessCollection<Kitchen> kitchensBackendlessCollection) {
-//                kitchen = kitchensBackendlessCollection;
-//
-//                addMoreItems(kitchensBackendlessCollection);
-//
-//                super.handleResponse(kitchensBackendlessCollection);
-//            }
-//        });
-//
-////        Button button = (Button) findViewById(R.id.button);
-////        button.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                Uri gmmIntentUri = Uri.parse("geo:0,0?q=1698 Hostetter Rd San Jose 95131");
-////                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-////                mapIntent.setPackage("com.google.android.apps.maps");
-////                Intent intent = new Intent(KitchenHomepageActivity.this, SearchableActivity.class);
-////                startActivity(intent);
-////                startActivity(mapIntent);
-////                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
-////            }
-////        });
-//
-///**        For test of AsyncTask */
-////        hp = (TextView) findViewById(R.id.homepage);
-////        hp.setText("");
-////        loadDataTask = new LoadDataTask();
-////        loadDataTask.execute("Start running");
-//
-//
-//        recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView view, int scrollState) {
-//
-//            }
-//
-//            @Override
-//            public void onScrolled(RecyclerView view, int dx, int dy) {
-//                if (dy > 0) {
-//                    visibleItemCount = glm.getChildCount();
-//                    totalItemCount = glm.getItemCount();
-//                    firstVisibleItem = glm.findFirstVisibleItemPosition();
-//
-//                    if (needToLoadItems(firstVisibleItem, visibleItemCount, totalItemCount)) {
-//                        isLoadingItems = true;
-//
-//                        kitchen.nextPage(new LoadingCallback<BackendlessCollection<Kitchen>>(KitchenHomepageActivity.this) {
-//                            @Override
-//                            public void handleResponse(BackendlessCollection<Kitchen> nextPage) {
-//                                kitchen = nextPage;
-//
-//                                addMoreItems(nextPage);
-//
-//                                isLoadingItems = false;
-//                            }
-//                        });
-//                    }
-//
-//                }
-//            }
-//        });
-//    }
-
-    public void retrieveData(BackendlessDataQuery query) {
-        Backendless.Data.of(Kitchen.class).find(query, new LoadingCallback<BackendlessCollection<Kitchen>>(this, getString(R.string.loading_kitchens), true) {
-            @Override
-            public void handleResponse(BackendlessCollection<Kitchen> kitchensBackendlessCollection) {
-                kitchen = kitchensBackendlessCollection;
-
-                addMoreItems(kitchensBackendlessCollection);
-
-                super.handleResponse(kitchensBackendlessCollection);
-            }
-//            @Override
-//            public void handleFault(BackendlessFault backendlessFault) {
-//
-//            }
-        });
-
-//        Button button = (Button) findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Uri gmmIntentUri = Uri.parse("geo:0,0?q=1698 Hostetter Rd San Jose 95131");
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//                Intent intent = new Intent(KitchenHomepageActivity.this, SearchableActivity.class);
-//                startActivity(intent);
-//                startActivity(mapIntent);
-//                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
-//            }
-//        });
-
-/**        For test of AsyncTask */
-//        hp = (TextView) findViewById(R.id.homepage);
-//        hp.setText("");
-//        loadDataTask = new LoadDataTask();
-//        loadDataTask.execute("Start running");
-
-
-        recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScrolled(RecyclerView view, int dx, int dy) {
-                if (dy > 0) {
-                    visibleItemCount = glm.getChildCount();
-                    totalItemCount = glm.getItemCount();
-                    firstVisibleItem = glm.findFirstVisibleItemPosition();
-
-                    if (needToLoadItems(firstVisibleItem, visibleItemCount, totalItemCount)) {
-                        isLoadingItems = true;
-
-                        kitchen.nextPage(new LoadingCallback<BackendlessCollection<Kitchen>>(KitchenHomepageActivity.this) {
-                            @Override
-                            public void handleResponse(BackendlessCollection<Kitchen> nextPage) {
-                                kitchen = nextPage;
-
-                                addMoreItems(nextPage);
-
-                                isLoadingItems = false;
-                            }
-                        });
-                    }
-
-                }
-            }
-        });
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -281,70 +143,6 @@ public class KitchenHomepageActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-
-        // Associate searchable configuration with the SearchView
-//        SearchManager searchManager =
-//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView =
-//                (SearchView) menu.findItem(R.id.search).getActionView();
-//        searchView.setSearchableInfo(
-//                searchManager.getSearchableInfo(getComponentName()));
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.search) {
-            Intent searchIntent = new Intent(KitchenHomepageActivity.this, SearchableActivity.class);
-            startActivity(searchIntent);
-//            overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
-        }
-        if (id == R.id.likes) {
-            Intent likedKitchen = new Intent(KitchenHomepageActivity.this, FollowedKitchenActivity.class);
-            startActivity(likedKitchen);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**For test of AsyncTask */
-//    private class LoadDataTask extends AsyncTask<String, Integer, String> {
-//        private Kitchen kitchen2;
-//        @Override
-//        protected String doInBackground(String... params) {
-//            kitchen2 = Backendless.Persistence.of(Kitchen.class).findFirst();
-//            return kitchen2.getName();
-//        }
-//        @Override
-//        protected void onPostExecute(String result) {
-//            hp.append(result);
-//        }
-//    }
-
-//    public void fetchTimelineAsync(int page) {
-//        // Send the network request to fetch the updated data
-//        // `client` here is an instance of Android Async HTTP
-//        client.getHomeTimeline(0, new JsonHttpResponseHandler() {
-//            public void onSuccess(JSONArray json) {
-//                // Remember to CLEAR OUT old items before appending in the new ones
-//                adapter.clear();
-//                // ...the data has come back, add new items to your adapter...
-//                adapter.addAll(...);
-//                // Now we call setRefreshing(false) to signal refresh has finished
-//                swipeRefreshLayout.setRefreshing(false);
-//            }
-//
-//            public void onFailure(Throwable e) {
-//                Log.d("DEBUG", "Fetch timeline error: " + e.toString());
-//            }
-//        });
-//    }
-
 
     @Override
     public void onRefresh() {
@@ -358,6 +156,51 @@ public class KitchenHomepageActivity extends AppCompatActivity
         swipeRefreshLayout.setRefreshing(false);
     }
 
+
+    public void retrieveData(BackendlessDataQuery query) {
+        Backendless.Data.of(Kitchen.class).find(query, new LoadingCallback<BackendlessCollection<Kitchen>>(this, getString(R.string.loading_kitchens), true) {
+            @Override
+            public void handleResponse(BackendlessCollection<Kitchen> kitchensBackendlessCollection) {
+                kitchen = kitchensBackendlessCollection;
+
+                addMoreItems(kitchensBackendlessCollection);
+
+                super.handleResponse(kitchensBackendlessCollection);
+            }
+        });
+
+        recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView view, int dx, int dy) {
+                if (dy > 0) {
+                    visibleItemCount = glm.getChildCount();
+                    totalItemCount = glm.getItemCount();
+                    firstVisibleItem = glm.findFirstVisibleItemPosition();
+
+                    if (needToLoadItems(firstVisibleItem, visibleItemCount, totalItemCount)) {
+                        isLoadingItems = true;
+
+                        kitchen.nextPage(new LoadingCallback<BackendlessCollection<Kitchen>>(KitchenHomepageActivity.this) {
+                            @Override
+                            public void handleResponse(BackendlessCollection<Kitchen> nextPage) {
+                                kitchen = nextPage;
+
+                                addMoreItems(nextPage);
+
+                                isLoadingItems = false;
+                            }
+                        });
+                    }
+
+                }
+            }
+        });
+    }
 
     /**
      * Determines whether is it needed to load more items as user scrolls down.
