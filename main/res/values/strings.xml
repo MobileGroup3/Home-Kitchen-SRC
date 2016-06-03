@@ -6,7 +6,6 @@
     <string name="logout_text">Log out</string>
 
 
-
     <string name="register_text">Register</string>
     <string name="restore_link">restore</string>
     <string name="password_recovered_message">We sent an email to your email address with a link to a password change page. Please check your email and follow the link for further instructions.</string>
@@ -19,17 +18,16 @@
     <string name="remember_login_text">Remember me</string>
 
     <string name="startKitchen">Create Kitchen</string>
-                                        
-    <string name="email_field_prompt">Email:</string>
-                                        
-    <string name="is_k_owner_field_prompt">Is_k_owner:</string>
-                                        
-    <string name="name_field_prompt">Name:</string>
-                                        
-    <string name="password_field_prompt">Password:</string>
-                                        
-    <string name="default_registered_text">Registered successfully!</string>
 
+    <string name="email_field_prompt">Email:</string>
+
+    <string name="is_k_owner_field_prompt">Is_k_owner:</string>
+
+    <string name="name_field_prompt">Name:</string>
+
+    <string name="password_field_prompt">Password:</string>
+
+    <string name="default_registered_text">Registered successfully!</string>
 
 
     <string name="registration_success_message">Thank you for registering with the %1$s. Click the button below to proceed to the login.</string>
@@ -67,6 +65,7 @@
     <string name="search_hint">Search Kitchen</string>
     <string name="search_label">Kitchens</string>
     <string name="search_fail">Oops, there is no match...</string>
+    <string name="search_succ">Find following for you:</string>
 
     <plurals name="dish_numbers">
         <item quantity="one">%d dish</item>
@@ -77,6 +76,7 @@
     <string name="sample_kitchen_name">Sample Kitchen Name</string>
     <string name="sample_category">sample category</string>
     <string name="sample_dishes">2 dishes</string>
+    <string name="title_activity_base">BaseActivity</string>
 
 
 </resources>

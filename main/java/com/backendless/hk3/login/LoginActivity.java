@@ -11,19 +11,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
-import com.backendless.Subscription;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.kitchen.CreateKitchenActivity;
 import com.backendless.hk3.login.kitchen.KitchenHomeActivity;
 import com.backendless.hk3.login.kitchen_list.KitchenHomepageActivity;
-import com.backendless.messaging.Message;
 import com.backendless.persistence.BackendlessDataQuery;
 
 import java.util.ArrayList;
@@ -67,9 +64,6 @@ public class LoginActivity extends Activity
 //
 //          }
 //      });
-
-
-
 
 
       Backendless.UserService.isValidLogin( new DefaultCallback<Boolean>( this )

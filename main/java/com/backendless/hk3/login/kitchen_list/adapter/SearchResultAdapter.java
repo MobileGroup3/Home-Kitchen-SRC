@@ -31,14 +31,12 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     public static class SearchViewHolder extends RecyclerView.ViewHolder {
         protected TextView search_kitchenNameView;
         protected TextView search_categoryView;
-//        protected TextView search_dishesNumberView;
         protected ImageView search_kitchenPic;
 
         public SearchViewHolder(View view) {
             super (view);
             search_kitchenNameView = (TextView) view.findViewById( R.id.search_kitchenName );
             search_categoryView = (TextView) view.findViewById( R.id.search_kitchenCategory );
-//            search_dishesNumberView = (TextView) view.findViewById( R.id.search_dishNumber );
             search_kitchenPic = (ImageView) view.findViewById(R.id.search_imageView);
         }
     }
@@ -54,13 +52,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         kitchenViewHolder.search_kitchenNameView.setText(item.getKitchenName());
         kitchenViewHolder.search_categoryView.setText(item.getCategory());
         final String objectId = item.getObjectId();
-//        if (item.getDish() != null) {
-//            kitchenViewHolder.search_dishesNumberView.setText(String.valueOf(item.getDish().getDishItem().size()));
-//        }
-//        else {
-//            kitchenViewHolder.search_dishesNumberView.setText("No dish published yet");
-//        }
-        //        kitchenViewHolder.dishesNumberView.setText("2");
+
         Picasso.with(mContext).load(item.getKitchenPic()).into(kitchenViewHolder.search_kitchenPic);
         kitchenViewHolder.search_kitchenPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +73,16 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     public void setData(List<Kitchen> list) {
         kitchens = list;
         notifyDataSetChanged();
+    }
+
+    public void clearData() {
+        int size = this.getItemCount();
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                this.kitchens.remove(0);
+            }
+            this.notifyItemRangeRemoved(0, size);
+        }
     }
 }
 

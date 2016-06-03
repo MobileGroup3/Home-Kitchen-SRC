@@ -24,7 +24,7 @@ import com.backendless.persistence.BackendlessDataQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FollowedKitchenActivity extends AppCompatActivity {
+public class FollowedKitchenActivity extends MyAppBaseActivity {
     private List<Kitchen> totalKitchens = new ArrayList<>();
     BackendlessUser currentUser;
     private FollowedKitchen followedKitchen;
@@ -35,7 +35,7 @@ public class FollowedKitchenActivity extends AppCompatActivity {
     private Context mContext;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_followed_kitchen);
 
@@ -82,23 +82,5 @@ public class FollowedKitchenActivity extends AppCompatActivity {
                 }
             }
         }.execute();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.likes) {
-            Intent likedKitchen = new Intent(FollowedKitchenActivity.this, FollowedKitchenActivity.class);
-            startActivity(likedKitchen);
-//            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
