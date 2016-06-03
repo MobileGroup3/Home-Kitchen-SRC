@@ -25,7 +25,7 @@ public class ActionBarActivity extends AppCompatActivity {
         inflater.inflate(R.menu.detail_option_menu, menu);
 
         MenuItem item = menu.findItem(R.id.share);
-        mShareActionProvider = (ShareActionProvider)item.getActionProvider();
+        //mShareActionProvider = (ShareActionProvider)item.getActionProvider();
         return true;
     }
 }
