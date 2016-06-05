@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -36,10 +37,10 @@ public class LoginActivity extends Activity
 {
   private TextView registerLink, restoreLink;
   private EditText identityField, passwordField;
-  private Button loginButton;
+  private TextView loginButton;
   private CheckBox rememberLoginBox;
 
-  private Button facebookButton;
+  private ImageView facebookButton;
   private BackendlessUser currentUser;
 
 
@@ -92,9 +93,9 @@ public class LoginActivity extends Activity
     restoreLink = (TextView) findViewById( R.id.restoreLink );
     identityField = (EditText) findViewById( R.id.identityField );
     passwordField = (EditText) findViewById( R.id.passwordField );
-    loginButton = (Button) findViewById( R.id.loginButton );
+    loginButton = (TextView) findViewById( R.id.loginButton );
     rememberLoginBox = (CheckBox) findViewById( R.id.rememberLoginBox );
-    facebookButton = (Button) findViewById( R.id.loginFacebookButton );
+    facebookButton = (ImageView) findViewById( R.id.loginFacebookButton );
 
     String tempString = getResources().getString( R.string.register_text );
     SpannableString underlinedContent = new SpannableString( tempString );

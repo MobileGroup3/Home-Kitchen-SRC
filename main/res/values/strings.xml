@@ -7,8 +7,8 @@
 
 
 
-    <string name="register_text">Register</string>
-    <string name="restore_link">restore</string>
+    <string name="register_text">Create Account </string>
+    <string name="restore_link">Forget Password?</string>
     <string name="password_recovered_message">We sent an email to your email address with a link to a password change page. Please check your email and follow the link for further instructions.</string>
     <string name="restore_password_page_name">Password Restoration</string>
     <string name="registration_page_name">Registration</string>
@@ -77,6 +77,7 @@
     <string name="sample_kitchen_name">Sample Kitchen Name</string>
     <string name="sample_category">sample category</string>
     <string name="sample_dishes">2 dishes</string>
+    <string name="login_initial">Login</string>
 
 
 </resources>
