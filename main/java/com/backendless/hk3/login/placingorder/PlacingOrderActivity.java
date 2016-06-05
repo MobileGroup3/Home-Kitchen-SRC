@@ -1,4 +1,5 @@
 package com.backendless.hk3.login.placingorder;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -65,6 +66,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
     String kitchenObjectId;
 
     boolean followedFlag = false;
+    //ViewGroup bottomShoppingCart;
+    //Object message = "hello";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,39 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
         Backendless.initApp(
                 this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
         currentUser = Backendless.UserService.CurrentUser();
+
+
+
+
+
+//        String chanel = "test";
+//
+//
+//        PublishOptions publishOptions = new PublishOptions();
+//        publishOptions.putHeader( "city", "Tokyo" );
+//        Object message = "hellooooooo";
+//        DeliveryOptions deliveryOptions = new DeliveryOptions();
+//        deliveryOptions.setPushBroadcast(PushBroadcastMask.ALL);
+//
+//        Backendless.Messaging.publish(chanel,
+//                message,
+//                publishOptions,
+//                new AsyncCallback<MessageStatus>() {
+//                    @Override
+//                    public void handleResponse(MessageStatus response) {
+//                        Log.e("login_publish_success",response.toString());
+//                    }
+//
+//                    @Override
+//                    public void handleFault(BackendlessFault fault) {
+//                        Log.e("login_publish_fail",fault.toString());
+//
+//                    }
+//                });
+
+
+        //bottomShoppingCart= (ViewGroup) findViewById(R.id.layout_bottom_cart);
+
 
 //        kitchenThumbImageView = (ImageView) findViewById(R.id.image_view_kitchen_thumb);
 //        kitchenNameTextView = (TextView) findViewById(R.id.text_view_kitchen_name);
@@ -231,6 +267,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
                     intent.putExtra("phone_number_extra_key", phoneNumber);
                     intent.putExtra("kitchen_object_id_extra_key",kitchen.getObjectId());
                     intent.putExtra("kitchen_name_extra_key",kitchen.getKitchenName());
+                    intent.putExtra("kitchen_email_extra_key",kitchen.getEmail());
 
                     startActivity(intent);
                 }
@@ -435,4 +472,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
         }
         return false;
     }
+
+
+
+
 }

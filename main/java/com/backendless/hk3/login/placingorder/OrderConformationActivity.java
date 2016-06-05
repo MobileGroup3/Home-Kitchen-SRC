@@ -29,6 +29,7 @@ import com.backendless.hk3.login.entities.Order;
 import com.backendless.hk3.login.entities.OrderItem;
 import com.backendless.hk3.login.entities.SimpleCartItem;
 import com.backendless.hk3.login.utility.BackendSettings;
+import com.backendless.messaging.BodyParts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
     public static final String PHONE_EXTRA_KEY = "phone_number_extra_key";
     public static final String KITCHEN_OBJECT_ID_EXTRA_KEY = "kitchen_object_id_extra_key";
     public static final String KITCHEN_NAME_EXTRA_KEY = "kitchen_name_extra_key";
+    public static final String KITCHEN_EMAIL_EXTA_KEY = "kitchen_email_extra_key";
 
     ArrayList<SimpleCartItem> simpleCartItemList;
     List<OrderItem> orderList;
@@ -60,6 +62,7 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
 
     String kitchenObjectId;
     String kitchenName;
+    String kitchenEmail;
     double totalAmount;
 
 
@@ -72,6 +75,46 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
 
         Backendless.initApp(this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
 
+//        String channelName = "test";
+//        Backendless.Messaging.subscribe( channelName,
+//                new AsyncCallback<List<Message>>()
+//                {
+//                    public void handleResponse( List<Message> response )
+//                    {
+//                        for( Message message : response )
+//                        {
+//                            String publisherId = message.getPublisherId();
+//                            Object data = message.getData();
+//                        }
+//                    }
+//                    public void handleFault( BackendlessFault fault )
+//                    {
+//                        Toast.makeText( OrderConformationActivity.this, fault.getMessage(), Toast.LENGTH_SHORT ).show();                                       }
+//                },
+//                new AsyncCallback<Subscription>()
+//                {
+//                    public void handleResponse( Subscription response )
+//                    {
+//                        Subscription subscription = response;
+//                    }
+//                    public void handleFault( BackendlessFault fault )
+//                    {
+//                        Toast.makeText( OrderConformationActivity.this, fault.getMessage(), Toast.LENGTH_SHORT ).show();
+//                    }
+//                }
+//        );
+
+//        Backendless.Messaging.registerDevice("homekitchen-1330", "default", new AsyncCallback<Void>() {
+//            @Override
+//            public void handleResponse(Void response) {
+//
+//            }
+//
+//            @Override
+//            public void handleFault(BackendlessFault fault) {
+//
+//            }
+//        });
 
         customer = Backendless.UserService.CurrentUser();
 //        Backendless.UserService.login("tongying@gmail.com", "123", new AsyncCallback<BackendlessUser>() {
@@ -108,6 +151,8 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
         kitchenName = intent.getStringExtra(KITCHEN_NAME_EXTRA_KEY);
 
         noteEditText = (EditText) findViewById(R.id.edit_text_note);
+
+        kitchenEmail = intent.getStringExtra(KITCHEN_EMAIL_EXTA_KEY);
 
 
         simpleCartItemList = intent.getParcelableArrayListExtra(CART_LIST_EXTRA_KEY);
@@ -170,6 +215,7 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
                         saveOrderToDatabase();
                         //Test , move toast to saveOrderToDataBase later
                         Toast.makeText(context,"Successful",Toast.LENGTH_SHORT).show();
+                        sendEmail();
                         finish();
                     }
                 }).
@@ -180,6 +226,28 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
                     }
                 })
                 .show();
+    }
+
+    public void sendEmail() {
+        String subject = "New Order";
+        String textMessage = "You have a new order coming from HomeKitchen";
+        String htmlMessage = "You have a new order coming from HomeKitchen";
+        BodyParts bodyParts = new BodyParts(textMessage,htmlMessage);
+        AsyncCallback<Void> responder = new AsyncCallback<Void>() {
+            @Override
+            public void handleResponse(Void response) {
+//                Log.e("success email",response.toString());
+
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+//                Log.e("fail to email",fault.toString());
+
+            }
+        };
+        Backendless.Messaging.sendEmail(subject, bodyParts,kitchenEmail,responder);
+
     }
 
     public void saveOrderToDatabase() {

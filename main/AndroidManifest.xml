@@ -14,6 +14,12 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="com.backendless.hk3.login.permission.C2D_MESSAGE"/>
+    <permission android:name="com.backendless.hk3.login.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +27,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <receiver android:name="com.backendless.push.BackendlessBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <category android:name="com.backendless.hk3.login"/>
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".SearchableActivity" />
+
         <activity
             android:name=".InitializationActivity"
             android:label="@string/app_name">
@@ -35,16 +55,11 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".RegistrationSuccessActivity" />
         <activity android:name=".RestorePasswordActivity" />
-                            
         <activity android:name=".LoginSuccessActivity" />
-        <activity android:name=".kitchen.CreateKitchenActivity"/>
-        <activity android:name=".kitchen.CreateOrEditDishActivity"/>
-        <activity android:name=".kitchen.KitchenHomeActivity"/>
-        <activity android:name=".kitchen.NotKitchenOwnerActivity"/>
-
-
-        <service android:name="com.backendless.AndroidService" />
-
+        <activity android:name=".kitchen.CreateKitchenActivity" />
+        <activity android:name=".kitchen.CreateOrEditDishActivity" />
+        <activity android:name=".kitchen.KitchenHomeActivity" />
+        <activity android:name=".kitchen.NotKitchenOwnerActivity" />
 
 
         <activity
@@ -52,32 +67,43 @@
             android:configChanges="orientation|screenSize"
             android:theme="@style/HomePageTheme">
             <meta-data
-                android:name="android.app.searchable"
+                android:name="android.HK3-Login.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".kitchen_list.SearchableActivity">
+        <activity
+            android:name=".kitchen_list.SearchableActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".kitchen_list.KitchenHomepageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
 
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".kitchen_list.KitchenHomepageActivity" />
         </activity>
 
-        <meta-data
-            android:name="android.app.searchable"
-            android:resource="@xml/searchable" />
+        <activity
+            android:name=".kitchen_list.FollowedKitchenActivity"
+            android:parentActivityName=".kitchen_list.KitchenHomepageActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".kitchen_list.KitchenHomepageActivity" />
+        </activity>
 
-        <service android:name="com.backendless.AndroidService" />
 
-        <activity android:name=".kitchen_list.FollowedKitchenActivity"></activity>
-
-        <activity android:name=".placingorder.PlacingOrderActivity"/>
+        <activity android:name=".placingorder.PlacingOrderActivity" />
         <activity android:name=".placingorder.OrderConformationActivity" />
         <activity android:name=".placingorder.OrderHistoryActivity" />
 
+        <service android:name="com.backendless.AndroidService" />
     </application>
 
 </manifest>
-

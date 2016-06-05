@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:animateLayoutChanges="true">
 
         <ImageView
             android:layout_marginLeft="20dp"

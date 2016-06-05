@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,23 +13,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-import com.backendless.hk3.data.Kitchen;
+import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.kitchen.CreateKitchenActivity;
 import com.backendless.hk3.login.kitchen.KitchenHomeActivity;
-import com.backendless.hk3.login.kitchen.NotKitchenOwnerActivity;
-import com.backendless.persistence.BackendlessDataQuery;
 import com.backendless.hk3.login.kitchen_list.KitchenHomepageActivity;
+import com.backendless.persistence.BackendlessDataQuery;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class LoginActivity extends Activity
@@ -56,9 +53,21 @@ public class LoginActivity extends Activity
     Backendless.setUrl( Defaults.SERVER_URL );
     Backendless.initApp( this, Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION );
 
+//      Backendless.Messaging.registerDevice("407467165892");
+//      Backendless.Messaging.getDeviceRegistration(new AsyncCallback<DeviceRegistration>() {
+//          @Override
+//          public void handleResponse(DeviceRegistration response) {
+//
+//          }
+//
+//          @Override
+//          public void handleFault(BackendlessFault fault) {
+//
+//          }
+//      });
 
 
-    Backendless.UserService.isValidLogin( new DefaultCallback<Boolean>( this )
+      Backendless.UserService.isValidLogin( new DefaultCallback<Boolean>( this )
     {
       @Override
       public void handleResponse( Boolean isValidLogin )
@@ -86,6 +95,9 @@ public class LoginActivity extends Activity
       }
     });
   }
+
+
+
 
   private void initUI()
   {
@@ -162,6 +174,7 @@ public class LoginActivity extends Activity
                     finish();
                 }
                 else {
+
                     String userID=backendlessUser.getObjectId();
                     String whereClause="owner.objectId = '"+userID+"'";
                     final BackendlessDataQuery dataQuery=new BackendlessDataQuery();
@@ -188,6 +201,9 @@ public class LoginActivity extends Activity
                             Log.i("isOwner",fault.getMessage()+" "+fault.getDetail());
                         }
                     });
+
+
+
                 }
 
 
