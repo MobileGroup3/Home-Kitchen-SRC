@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -43,10 +44,10 @@ public class CreateKitchenActivity extends Activity {
     private EditText streetField;
     private EditText zipcodeField;
     private Spinner foodCategory;
-    private Button createButton;
+    private TextView createButton;
     private ProgressDialog progress;
 
-    private ImageView ivGallery;
+    private TextView ivGallery;
     private ImageView ivImage;
     GalleryPhoto galleryPhoto;
     final int GALLERY_REQUEST=0;
@@ -101,8 +102,8 @@ public class CreateKitchenActivity extends Activity {
         streetField = (EditText) findViewById(R.id.street);
         zipcodeField = (EditText) findViewById(R.id.zipcode);
         foodCategory = (Spinner) findViewById(R.id.category);
-        createButton = (Button) findViewById(R.id.createKitchen);
-        ivGallery = (ImageView) findViewById(R.id.imageView);
+        createButton = (TextView) findViewById(R.id.createKitchen);
+        ivGallery = (TextView) findViewById(R.id.imageView);
         ivImage = (ImageView) findViewById(R.id.homepage);
 
         ivGallery.setOnClickListener(new View.OnClickListener() {

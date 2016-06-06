@@ -93,9 +93,15 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:src="@drawable/facebook_icon"
+        android:layout_height="wrap_content"
+        android:src="@drawable/or_divider"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:src="@drawable/signupfb"
         android:id="@+id/loginFacebookButton"/>
 
 

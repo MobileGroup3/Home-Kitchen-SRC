@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,230 +8,139 @@
     android:paddingRight="@dimen/dp16">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/kName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/border"
+            android:gravity="center_vertical"
+            android:hint="Kitchen Name"
+            android:inputType="text"
+            android:textSize="@dimen/text_medium" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/border"
+            android:gravity="center_vertical"
+            android:hint="Phone "
+            android:inputType="number"
+            android:textSize="@dimen/text_medium" />
 
 
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/border"
+            android:gravity="center_vertical"
+            android:hint="City"
+            android:inputType="text"
+            android:textSize="@dimen/text_medium" />
 
-        <TableLayout
-            android:layout_width="fill_parent"
+        <EditText
+            android:id="@+id/street"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/border"
+            android:gravity="center_vertical"
+            android:hint="Street Address"
+            android:inputType="text"
+            android:textSize="@dimen/text_medium" />
+
+        <EditText
+            android:id="@+id/zipcode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/border"
+            android:gravity="center_vertical"
+            android:hint="ZIP Code"
+            android:inputType="text"
+            android:textSize="@dimen/text_medium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp4"
-            android:layout_marginBottom="@dimen/dp4">
+            android:orientation="horizontal"
+            android:layout_marginTop="33dp">
 
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/dp48"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp48"
-                    android:paddingRight="@dimen/dp4"
-                    android:textSize="@dimen/text_medium"
-                    android:gravity="center_vertical|right"
-                    android:layout_marginRight="@dimen/dp4"
-                    android:text="@string/kitchenName" />
-
-                <EditText
-
-                    android:layout_width="@dimen/dp144"
-                    android:layout_height="@dimen/dp48"
-                    android:id="@+id/kName"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginLeft="@dimen/dp4"
-                    android:gravity="center_vertical"
-
-                    android:inputType="text" />
-
-            </TableRow>
-
-            <TableRow>
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp48"
-                android:paddingRight="@dimen/dp4"
-                android:textSize="@dimen/text_medium"
-                android:gravity="center_vertical|right"
-                android:layout_marginRight="@dimen/dp4"
-                android:text="@string/phone" />
-
-
-            <EditText
-
-                android:layout_width="@dimen/dp144"
-                android:layout_height="@dimen/dp48"
-                android:id="@+id/phone"
-                android:textSize="@dimen/text_medium"
-                android:layout_marginLeft="@dimen/dp4"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center_vertical"
 
-                android:inputType="number" />
+                android:text="Category"
+                android:textSize="@dimen/text_medium" />
 
-        </TableRow>
+            <Spinner
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp48"
-                    android:paddingRight="@dimen/dp4"
-                    android:textSize="@dimen/text_medium"
-                    android:gravity="center_vertical|right"
-                    android:layout_marginRight="@dimen/dp4"
-                    android:text="@string/city" />
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp4"
+                android:entries="@array/category"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_medium" />
 
 
-                <EditText
-
-                    android:layout_width="@dimen/dp144"
-                    android:layout_height="@dimen/dp48"
-                    android:id="@+id/city"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginLeft="@dimen/dp4"
-                    android:gravity="center_vertical"
-
-                    android:inputType="text" />
-
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp48"
-                    android:paddingRight="@dimen/dp4"
-                    android:textSize="@dimen/text_medium"
-                    android:gravity="center_vertical|right"
-                    android:layout_marginRight="@dimen/dp4"
-                    android:text="@string/street" />
-
-
-                <EditText
-
-                    android:layout_width="@dimen/dp144"
-                    android:layout_height="@dimen/dp48"
-                    android:id="@+id/street"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginLeft="@dimen/dp4"
-                    android:gravity="center_vertical"
-
-                    android:inputType="text" />
-
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp48"
-                    android:paddingRight="@dimen/dp4"
-                    android:textSize="@dimen/text_medium"
-                    android:gravity="center_vertical|right"
-                    android:layout_marginRight="@dimen/dp4"
-                    android:text="@string/zipcode" />
-
-
-                <EditText
-
-                    android:layout_width="@dimen/dp144"
-                    android:layout_height="@dimen/dp48"
-                    android:id="@+id/zipcode"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginLeft="@dimen/dp4"
-                    android:gravity="center_vertical"
-
-                    android:inputType="text" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/dp48"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp48"
-                    android:paddingRight="@dimen/dp4"
-                    android:textSize="@dimen/text_medium"
-                    android:gravity="center_vertical|right"
-                    android:layout_marginRight="@dimen/dp4"
-                    android:text="@string/category" />
-
-                <Spinner
-
-                    android:layout_width="@dimen/dp144"
-                    android:layout_height="@dimen/dp48"
-                    android:id="@+id/category"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginLeft="@dimen/dp4"
-                    android:gravity="center_vertical"
-
-                    android:entries="@array/category" />
-
-            </TableRow>
-
-            <TableRow
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
-
-            <TableRow
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp48"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp48"
-                    android:paddingRight="@dimen/dp4"
-                    android:textSize="@dimen/text_medium"
-                    android:gravity="center_vertical|right"
-                    android:layout_marginRight="@dimen/dp4"
-                    android:text="@string/imageUpload" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp48"
-                    android:id="@+id/imageView"
-                    android:height="@dimen/dp40"
-                    android:src="@android:drawable/ic_menu_gallery"/>
-
-
-                <Button
-                    android:layout_width="@dimen/dp144"
-                    android:layout_height="@dimen/dp48"
-                    android:id="@+id/imageUpload"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dp4"
-                    android:textSize="@dimen/text_medium"
-                    android:height="@dimen/dp40"
-                    android:text="@string/uploadButton" />
-            </TableRow>
-
-        </TableLayout>
+        </LinearLayout>
 
         <ImageView
+            android:id="@+id/homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/homepage"
-            android:layout_gravity="center_horizontal" />
-
-
-        <Button
-            android:layout_width="@dimen/dp144"
-            android:layout_height="@dimen/dp48"
-            android:id="@+id/createKitchen"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp4"
-            android:textSize="@dimen/text_medium"
-            android:height="@dimen/dp40"
-            android:text="@string/createKitchen" />
+            android:background="@drawable/border_image"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="33dp">
+
+            <TextView
+                android:id="@+id/imageView"
+                android:layout_width="160dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:height="@dimen/dp40"
+                android:background="@drawable/border_button"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Click to Open Gallery"
+                android:textColor="@color/white"
+                />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+
+            <TextView
+                android:id="@+id/createKitchen"
+                android:layout_width="160dp"
+                android:layout_height="35dp"
+                android:height="@dimen/dp40"
+                android:background="@drawable/border_button"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Create Your Kitchen"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 </ScrollView>

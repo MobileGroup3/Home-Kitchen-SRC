@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -41,9 +42,9 @@ public class CreateOrEditDishActivity extends AppCompatActivity {
     private EditText priceField;
     private EditText quantityField;
     private EditText descriptionField;
-    private Button imageButton;
+    private TextView imageButton;
     private ImageView ivDishPic;
-    private Button sumbitButton;
+    private TextView sumbitButton;
 
 
     private BackendlessUser user;
@@ -63,9 +64,9 @@ public class CreateOrEditDishActivity extends AppCompatActivity {
         priceField=(EditText)findViewById(R.id.priceText);
         quantityField=(EditText)findViewById(R.id.quantityText);
         descriptionField=(EditText)findViewById(R.id.editText2);
-        imageButton=(Button)findViewById(R.id.dishUpload);
+        imageButton=(TextView) findViewById(R.id.dishUpload);
         ivDishPic=(ImageView)findViewById(R.id.dishImg);
-        sumbitButton=(Button)findViewById(R.id.submitButton);
+        sumbitButton=(TextView) findViewById(R.id.submitButton);
 
         Backendless.initApp(this, Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION);
         user = Backendless.UserService.CurrentUser();
