@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HK3-Login</string>
+    <string name="app_name">HOME KITCHEN</string>
     <string name="login_success_message">Login successful! This concludes an example.</string>
     <string name="login_text">Log in</string>
     <string name="logout_text">Log out</string>

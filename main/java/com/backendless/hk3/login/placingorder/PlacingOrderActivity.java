@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 //    ImageView kitchenThumbImageView;
 //    TextView kitchenNameTextView;
 //    Button addressButton;
-
+    RelativeLayout mainPart;
     RecyclerView menuRecyclerView;
     LinearLayoutManager llm;
     MenuAdapter menuAdapter;
@@ -139,6 +140,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
         Intent intent = getIntent();
         kitchenObjectId = intent.getStringExtra(OBJECT_ID_EXTRA_KEY);
+        mainPart = (RelativeLayout) findViewById(R.id.main_kitchen_layout);
 
         new AsyncTask<Void, Void, Kitchen>() {
             @Override
@@ -224,6 +226,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
             @Override
             protected void onPostExecute(Boolean flag) {
                 menuAdapter.setFlagData(flag);
+                mainPart.setVisibility(View.VISIBLE);
 
             }
         }.execute();
