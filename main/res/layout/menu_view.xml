@@ -84,9 +84,11 @@
             android:id="@+id/text_view_remaining_number" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_add_dish"
+            android:layout_margin="4dp"
+            android:background="@drawable/custom_button"
             android:text="ADD"/>
 
     </LinearLayout>

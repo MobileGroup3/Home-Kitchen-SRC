@@ -232,14 +232,11 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
         // Set follow and unfollow listener
 
-
-
         cartIconImageView = (ImageView) findViewById(R.id.image_view_cart_icon);
         cartIconImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (cartListView.getVisibility() == View.GONE) {
-
                     cartListView.setVisibility(View.VISIBLE);
                 } else {
                     cartListView.setVisibility(View.GONE);

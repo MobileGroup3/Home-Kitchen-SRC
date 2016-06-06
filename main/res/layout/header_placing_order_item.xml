@@ -39,12 +39,14 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/lightGrey"
             android:id="@+id/button_address"
             android:layout_weight="1"/>
 
@@ -53,8 +55,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/phone_icon"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 
