@@ -1,179 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="@dimen/dp16"
-    android:paddingRight="@dimen/dp16">
+    android:paddingRight="@dimen/dp16"
+    android:weightSum="1">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/dp48"
-        android:gravity="center_vertical|center_horizontal"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/dp4">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="@dimen/dp4"
-            android:text="@string/app_name"
-            android:textSize="@dimen/text_large" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/dp4"
-            android:text="@string/login_text"
-            android:textSize="@dimen/text_large" />
-    </LinearLayout>
-                                    
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp4"
-        android:layout_marginTop="@dimen/dp4">
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp4"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp48"
-                android:layout_marginRight="@dimen/dp4"
-                android:gravity="center_vertical|right"
-                android:text="@string/login_prompt"
-                android:textSize="@dimen/text_medium"/>
-
-            <EditText
-                android:id="@+id/identityField"
-                android:layout_width="@dimen/dp144"
-                android:layout_height="@dimen/dp48"
-                android:layout_marginLeft="@dimen/dp4"
-                android:layout_marginRight="@dimen/dp4"
-                android:gravity="center_vertical"
-                android:inputType="text"
-                android:textSize="@dimen/text_medium"/>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp48"
-                android:layout_marginLeft="@dimen/dp4"/>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp4"
-            android:layout_marginTop="@dimen/dp4"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp48"
-                android:layout_marginRight="@dimen/dp4"
-                android:gravity="center_vertical|right"
-                android:text="@string/password_prompt"
-                android:textSize="@dimen/text_medium"/>
-
-            <EditText
-                android:id="@+id/passwordField"
-                android:layout_width="@dimen/dp144"
-                android:layout_height="@dimen/dp48"
-                android:layout_marginLeft="@dimen/dp4"
-                android:layout_marginRight="@dimen/dp4"
-                android:gravity="center_vertical"
-                android:inputType="textPassword"
-                android:singleLine="false"
-                android:textSize="@dimen/text_medium"/>
-
-            <TextView
-                android:id="@+id/restoreLink"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp48"
-                android:layout_marginLeft="@dimen/dp4"
-                android:clickable="true"
-                android:gravity="bottom|right"
-                android:text="@string/restore_link"
-                android:textColor="@android:color/holo_blue_light"
-                android:textSize="@dimen/text_medium"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp4"
-            android:gravity="center">
-
-            <CheckBox
-                android:id="@+id/rememberLoginBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/remember_login_text"/>
-        </TableRow>
-    </TableLayout>
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/identityField"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp48"
-        android:layout_marginBottom="@dimen/dp4"
-        android:layout_marginTop="@dimen/dp16"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/registerLink"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp48"
-            android:layout_marginRight="@dimen/dp4"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:linksClickable="false"
-            android:singleLine="false"
-            android:text="@string/register_text"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="@dimen/text_medium"/>
-
-        <Button
-            android:id="@+id/loginFacebookButton"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp48"
-            android:layout_marginBottom="@dimen/dp4"
-            android:height="@dimen/dp40"
-            android:background="@drawable/btn_facebook_bg"
-            android:text="@string/facebook"/>
+        android:layout_marginBottom="33dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:hint="Email"
+        android:inputType="text"
+        android:textSize="@dimen/text_medium" />
 
 
-    </LinearLayout>
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:layout_alignBaseline="@+id/restoreLink"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:singleLine="false"
+        android:textSize="@dimen/text_medium"
+        android:layout_marginBottom="38dp" />
 
+
+    <TextView
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/login_text"
+        android:textSize="@dimen/text_medium"
+        android:background="@drawable/border"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginBottom="10dp" />
+        <!--android:layout_weight="0.10" />-->
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="@dimen/dp4"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp4"
-            android:text="@string/login_text"
-            android:textSize="@dimen/text_medium"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right" />
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/registerLink"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp48"
+        android:layout_alignBaseline="@+id/loginButton"
+        android:layout_alignBottom="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:linksClickable="false"
+        android:singleLine="false"
+        android:text="@string/register_text"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/text_medium"
+        android:layout_weight="0.06"
+        android:gravity="center_vertical|end"
+        android:paddingRight="30dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/restoreLink"
+        android:layout_width="143dp"
+        android:layout_height="@dimen/dp48"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_toEndOf="@+id/space"
+        android:layout_toRightOf="@+id/space"
+        android:clickable="true"
+        android:text="@string/restore_link"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/text_medium"
+        android:layout_weight="0.08"
+        android:gravity="center_vertical|center_horizontal" />
+
+</LinearLayout>
+
+    <!--<ImageView-->
+        <!--android:layout_width="166dp"-->
+        <!--android:layout_height="89dp"-->
+        <!--android:src="@drawable/facebook"-->
+        <!--android:layout_gravity="right" />-->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@drawable/facebook_icon"
+        android:layout_marginTop="50dp"
+        android:id="@+id/loginFacebookButton"/>
+
+
+
+
+
 </LinearLayout>

@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class RegistrationSuccessActivity extends Activity
 {
   private TextView messageView;
-  private Button loginButton;
+  private TextView loginButton;
 
   @Override
   public void onCreate( Bundle savedInstanceState )
@@ -25,7 +24,7 @@ public class RegistrationSuccessActivity extends Activity
   private void initUI()
   {
     messageView = (TextView) findViewById( R.id.messageView );
-    loginButton = (Button) findViewById( R.id.loginButton );
+    loginButton = (TextView) findViewById( R.id.loginButton );
                                                     
 
     Resources resources = getResources();
