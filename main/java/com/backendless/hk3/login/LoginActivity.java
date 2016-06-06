@@ -35,7 +35,7 @@ public class LoginActivity extends Activity
   private TextView registerLink, restoreLink;
   private EditText identityField, passwordField;
   private TextView loginButton;
-  private CheckBox rememberLoginBox;
+//  private CheckBox rememberLoginBox;
 
   private ImageView facebookButton;
   private BackendlessUser currentUser;
@@ -106,7 +106,7 @@ public class LoginActivity extends Activity
     identityField = (EditText) findViewById( R.id.identityField );
     passwordField = (EditText) findViewById( R.id.passwordField );
     loginButton = (TextView) findViewById( R.id.loginButton );
-    rememberLoginBox = (CheckBox) findViewById( R.id.rememberLoginBox );
+//    rememberLoginBox = (CheckBox) findViewById( R.id.rememberLoginBox );
     facebookButton = (ImageView) findViewById( R.id.loginFacebookButton );
 
     String tempString = getResources().getString( R.string.register_text );
@@ -161,7 +161,7 @@ public class LoginActivity extends Activity
     {
         String identity = identityField.getText().toString();
         String password = passwordField.getText().toString();
-        final boolean rememberLogin = rememberLoginBox.isChecked();
+//        final boolean rememberLogin = rememberLoginBox.isChecked();
 
         Backendless.UserService.login( identity, password, new DefaultCallback<BackendlessUser>( LoginActivity.this )
         {
@@ -208,7 +208,7 @@ public class LoginActivity extends Activity
 
 
             }
-        }, rememberLogin );
+        }, true );
     }
 
 
