@@ -7,8 +7,6 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,8 +16,6 @@ import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-
-
 import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.hk3.login.kitchen.CreateKitchenActivity;
 import com.backendless.hk3.login.kitchen.KitchenHomeActivity;
