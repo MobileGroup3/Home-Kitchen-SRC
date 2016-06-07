@@ -21,32 +21,46 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/dish_icon"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/food"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Dish Name"
-            android:id="@+id/text_view_dish_name"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Dish Name"
+                android:id="@+id/text_view_dish_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Dish Description"
+                android:id="@+id/text_view_dish_description" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginBottom="5dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Dish Description"
-        android:id="@+id/text_view_dish_description" />
+
 
     <View
         android:layout_width="match_parent"
@@ -57,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal">
 
         <TextView

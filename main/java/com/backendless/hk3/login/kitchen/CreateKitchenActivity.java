@@ -8,10 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -20,10 +20,12 @@ import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.files.BackendlessFile;
-import com.backendless.hk3.data.Dish;
+
 import com.backendless.hk3.login.Defaults;
 import com.backendless.hk3.login.R;
-import com.backendless.hk3.data.Kitchen;
+
+import com.backendless.hk3.login.entities.Dish;
+import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.persistence.BackendlessDataQuery;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageLoader;
@@ -43,10 +45,10 @@ public class CreateKitchenActivity extends Activity {
     private EditText streetField;
     private EditText zipcodeField;
     private Spinner foodCategory;
-    private Button createButton;
+    private TextView createButton;
     private ProgressDialog progress;
 
-    private ImageView ivGallery;
+    private TextView ivGallery;
     private ImageView ivImage;
     GalleryPhoto galleryPhoto;
     final int GALLERY_REQUEST=0;
@@ -101,8 +103,8 @@ public class CreateKitchenActivity extends Activity {
         streetField = (EditText) findViewById(R.id.street);
         zipcodeField = (EditText) findViewById(R.id.zipcode);
         foodCategory = (Spinner) findViewById(R.id.category);
-        createButton = (Button) findViewById(R.id.createKitchen);
-        ivGallery = (ImageView) findViewById(R.id.imageView);
+        createButton = (TextView) findViewById(R.id.createKitchen);
+        ivGallery = (TextView) findViewById(R.id.imageView);
         ivImage = (ImageView) findViewById(R.id.homepage);
 
         ivGallery.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +183,7 @@ public class CreateKitchenActivity extends Activity {
 
                 if (!zipText.isEmpty()) {
                     zipCode = zipText;
-                    kitchen.setZipCode(zipCode);
+                    kitchen.setZipcode(zipCode);
                 }
 
                 if (!categoryText.isEmpty()) {

@@ -18,7 +18,7 @@ public class RegisterActivity extends Activity {
     private EditText nameField;
     private EditText passwordField;
 
-    private Button registerButton;
+    private TextView registerButton;
 
     private String email;
     private Boolean is_k_owner;
@@ -39,7 +39,7 @@ public class RegisterActivity extends Activity {
         is_k_ownerField = (Spinner) findViewById(R.id.is_k_ownerField);
         nameField = (EditText) findViewById(R.id.nameField);
         passwordField = (EditText) findViewById(R.id.passwordField);
-        registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton = (TextView) findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

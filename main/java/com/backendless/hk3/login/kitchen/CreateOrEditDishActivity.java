@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -18,10 +18,11 @@ import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.files.BackendlessFile;
-import com.backendless.hk3.data.DishItem;
-import com.backendless.hk3.data.Kitchen;
+
 import com.backendless.hk3.login.Defaults;
 import com.backendless.hk3.login.R;
+import com.backendless.hk3.login.entities.DishItem;
+import com.backendless.hk3.login.entities.Kitchen;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageLoader;
 import com.squareup.picasso.Picasso;
@@ -41,16 +42,15 @@ public class CreateOrEditDishActivity extends AppCompatActivity {
     private EditText priceField;
     private EditText quantityField;
     private EditText descriptionField;
-    private Button imageButton;
+    private TextView imageButton;
     private ImageView ivDishPic;
-    private Button sumbitButton;
+    private TextView sumbitButton;
 
 
     private BackendlessUser user;
     GalleryPhoto galleryPhoto;
     String selectedPhoto;
     private ProgressDialog progress;
-    private Kitchen kitchen;
     private DishItem dishItem;
 
     @Override
@@ -63,9 +63,9 @@ public class CreateOrEditDishActivity extends AppCompatActivity {
         priceField=(EditText)findViewById(R.id.priceText);
         quantityField=(EditText)findViewById(R.id.quantityText);
         descriptionField=(EditText)findViewById(R.id.editText2);
-        imageButton=(Button)findViewById(R.id.dishUpload);
+        imageButton=(TextView) findViewById(R.id.dishUpload);
         ivDishPic=(ImageView)findViewById(R.id.dishImg);
-        sumbitButton=(Button)findViewById(R.id.submitButton);
+        sumbitButton=(TextView) findViewById(R.id.submitButton);
 
         Backendless.initApp(this, Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION);
         user = Backendless.UserService.CurrentUser();
@@ -145,7 +145,7 @@ public class CreateOrEditDishActivity extends AppCompatActivity {
                     dishItem.setDescription(description);
                 }
 
-                dishItem.setPrice(price);
+                dishItem.setPrice((double)price);
                 dishItem.setMax_num(quantity);
 
                 if (selectedPhoto == null) {
