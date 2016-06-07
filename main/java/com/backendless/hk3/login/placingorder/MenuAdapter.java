@@ -40,17 +40,20 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public class HeaderHolder extends RecyclerView.ViewHolder{
         ImageView kitchenThumbImageView;
         TextView kitchenNameTextView;
-        Button addressButton;
-        Button phoneNumberButton;
+        TextView addressTextView;
+        ImageView mapImageView;
+        ImageView phoneNumberImageView;
         ImageView followedKitchenImageView;
 
         public HeaderHolder(View headerView) {
             super(headerView);
             kitchenThumbImageView = (ImageView) headerView.findViewById(R.id.image_view_kitchen_thumb);
             kitchenNameTextView = (TextView) headerView.findViewById(R.id.text_view_kitchen_name);
-            addressButton = (Button) headerView.findViewById(R.id.button_address);
-            phoneNumberButton = (Button) headerView.findViewById(R.id.button_phone_number);
+            phoneNumberImageView = (ImageView) headerView.findViewById(R.id.image_view_phone_number);
             followedKitchenImageView = (ImageView) headerView.findViewById(R.id.image_view_follow_kitchen);
+
+            addressTextView = (TextView) headerView.findViewById(R.id.text_view_address);
+            mapImageView = (ImageView) headerView.findViewById(R.id.image_view_map);
 
         }
 
@@ -62,8 +65,8 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             kitchenNameTextView.setText(name);
 
             final String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
-            addressButton.setText(address);
-            addressButton.setOnClickListener(new View.OnClickListener() {
+            addressTextView.setText(address);
+            mapImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + address);
@@ -72,9 +75,9 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 }
             });
 
-            //phoneNumberButton.setText(kitchen.getPhoneNumber());
+            //phoneNumberImageView.setText(kitchen.getPhoneNumber());
             final String phoneNumber = kitchen.getPhoneNumber();
-            phoneNumberButton.setOnClickListener(new View.OnClickListener() {
+            phoneNumberImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);

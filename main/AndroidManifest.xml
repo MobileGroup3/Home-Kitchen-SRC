@@ -101,8 +101,13 @@
                 android:value=".kitchen_list.KitchenHomepageActivity" />
         </activity>
 
+        <activity android:name=".placingorder.PlacingOrderActivity"
+            android:parentActivityName="com.backendless.hk3.login.kitchen_list.KitchenHomepageActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".kitchen_list.KitchenHomepageActivity"/>
+        </activity>
 
-        <activity android:name=".placingorder.PlacingOrderActivity" />
         <activity android:name=".placingorder.OrderConformationActivity" />
         <activity android:name=".placingorder.OrderHistoryActivity" />
 

@@ -2,39 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="280dp"
         android:scaleType="centerCrop"
         android:id="@+id/image_view_kitchen_thumb"/>
 
-    <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:fontFamily="sans-serif-medium"
+        android:text="Kitchen Name"
+        android:textColor="@color/grey"
+        android:id="@+id/text_view_kitchen_name"
+        android:textSize="30dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Kitchen Name"
-            android:id="@+id/text_view_kitchen_name"
-            android:layout_gravity="center_vertical"
-            android:textSize="30dp"/>
-
-        <ImageView
-            android:id="@+id/image_view_follow_kitchen"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/followed_icon"/>
-
-    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGrey"
+        android:id="@+id/text_view_address"
+        android:textSize="18dp"/>
 
     <LinearLayout
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
@@ -42,33 +37,52 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/lightGrey"
-            android:id="@+id/button_address"
             android:layout_weight="1"/>
 
-        <Button
-            android:id="@+id/button_phone_number"
+        <ImageView
+            android:id="@+id/image_view_follow_kitchen"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/followed_icon" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/image_view_phone_number"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/phone_icon"
             android:layout_gravity="center_vertical" />
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/image_view_map"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/map_icon" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textSize="30dp"
-        android:background="@color/white"
         android:text="Today's Menu"
         android:gravity="center_horizontal"
         android:textColor="@color/orange"/>

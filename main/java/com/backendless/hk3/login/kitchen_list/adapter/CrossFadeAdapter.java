@@ -1,9 +1,6 @@
 package com.backendless.hk3.login.kitchen_list.adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +9,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.backendless.hk3.login.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by clover on 5/24/16.
  */
 public class CrossFadeAdapter extends PagerAdapter {
     private int[] image_resources = {
-            R.drawable.hongkong_food,
-            R.drawable.cake,
-            R.drawable.bottle,
-            R.drawable.smooth};
+            R.drawable.makalong,
+            R.drawable.sushi,
+            R.drawable.kitchen,
+            R.drawable.smoothie};
     private Context context;
     private LayoutInflater layoutInflater;
 
@@ -45,13 +43,15 @@ public class CrossFadeAdapter extends PagerAdapter {
         View item_view = layoutInflater.inflate(R.layout.custom_crossfade, container, false);
         ImageView imageView = (ImageView) item_view.findViewById(R.id.single_view_pager);
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 8;
-        Resources res = context.getResources();
-        int id = image_resources[position];
-
-        Bitmap picture = BitmapFactory.decodeResource(res, id, options);
-        imageView.setImageBitmap(picture);
+        int resId = image_resources[position];
+        Picasso.with(context).load(resId).resize(512,320).into(imageView);
+//        BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inSampleSize = 2;
+//        Resources res = context.getResources();
+//        int id = image_resources[position];
+//
+//        Bitmap picture = BitmapFactory.decodeResource(res, id,options);
+//        imageView.setImageBitmap(picture);
         container.addView(item_view);
         return item_view;
     }
