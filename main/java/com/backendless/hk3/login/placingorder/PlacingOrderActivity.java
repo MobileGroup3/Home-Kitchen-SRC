@@ -74,6 +74,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_placing_order);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Backendless.initApp(
                 this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
@@ -115,7 +116,7 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 //        kitchenThumbImageView = (ImageView) findViewById(R.id.image_view_kitchen_thumb);
 //        kitchenNameTextView = (TextView) findViewById(R.id.text_view_kitchen_name);
 //        addressButton = (Button) findViewById(R.id.button_address);
-//        phoneNumberButton = (Button) findViewById(R.id.button_phone_number);
+//        phoneNumberImageView = (Button) findViewById(R.id.button_phone_number);
 
         totalAmountTextView = (TextView) findViewById(R.id.text_view_total_amount);
 
@@ -171,8 +172,8 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 //                    Picasso.with(PlacingOrderActivity.this).load(kitchen.getKitchenPic()).into(kitchenThumbImageView);
 //
 //                      phoneNumber = kitchen.getPhoneNumber();
-////                    phoneNumberButton.setText(phoneNumber);
-//                    phoneNumberButton.setOnClickListener(new View.OnClickListener() {
+////                    phoneNumberImageView.setText(phoneNumber);
+//                    phoneNumberImageView.setOnClickListener(new View.OnClickListener() {
 //                        @Override
 //                        public void onClick(View v) {
 //                            Intent callIntent = new Intent(Intent.ACTION_CALL);

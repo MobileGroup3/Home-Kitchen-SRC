@@ -127,9 +127,7 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_shopping_cart) {
-            // Handle the camera action
-        } else if (id == R.id.nav_order_history) {
+       if (id == R.id.nav_order_history) {
             Intent intent = new Intent(KitchenHomepageActivity.this, OrderHistoryActivity.class);
             startActivity(intent);
 
@@ -137,14 +135,7 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
             Intent intent = new Intent(KitchenHomepageActivity.this, FollowedKitchenActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_setting) {
-//            Intent settingIntent = new Intent(this, SettingsActivity.class);
-//            startActivity(settingIntent);
-
-
-        } else if (id == R.id.nav_profile) {
-
-        } else if (id == R.id.nav_log) {
+        }  else if (id == R.id.nav_log) {
             userLogout();
             Intent logoutIntent = new Intent(this, LoginActivity.class);
             startActivity(logoutIntent);
@@ -196,12 +187,12 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
                     totalItemCount = glm.getItemCount();
                     firstVisibleItem = glm.findFirstVisibleItemPosition();
 
-                    if (firstVisibleItem > this.mLastFirstVisibleItem) {
-                        KitchenHomepageActivity.this.getSupportActionBar().show();
-                    } else if (firstVisibleItem < this.mLastFirstVisibleItem) {
-                        KitchenHomepageActivity.this.getSupportActionBar().hide();
-                    }
-                    this.mLastFirstVisibleItem = firstVisibleItem;
+//                    if (firstVisibleItem > this.mLastFirstVisibleItem) {
+//                        KitchenHomepageActivity.this.getSupportActionBar().show();
+//                    } else if (firstVisibleItem < this.mLastFirstVisibleItem) {
+//                        KitchenHomepageActivity.this.getSupportActionBar().hide();
+//                    }
+//                    this.mLastFirstVisibleItem = firstVisibleItem;
 
                     if (needToLoadItems(firstVisibleItem, visibleItemCount, totalItemCount)) {
                         isLoadingItems = true;

@@ -39,7 +39,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/imageView"
             android:textSize="@dimen/abc_text_size_medium_material"
-            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
             android:paddingLeft="@dimen/view_horizontal_margin"/>
 
         <TextView
@@ -50,7 +50,8 @@
             android:layout_below="@+id/kitchenName"
             android:textSize="@dimen/abc_text_size_small_material"
             android:layout_alignParentLeft="true"
-            android:paddingLeft="@dimen/view_horizontal_margin" />
+            android:paddingLeft="@dimen/view_horizontal_margin"
+            android:fontFamily="sans-serif-thin"/>
 
 
         <!-- this text area is to display quantity of dishes published -->
