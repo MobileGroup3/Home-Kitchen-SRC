@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/dp16"
     android:paddingRight="@dimen/dp16"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layout_gravity="center_vertical">
 
 
     <EditText
@@ -92,17 +93,19 @@
         <!--android:layout_gravity="right" />-->
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/or_divider"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="30dp"/>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="230dp"
         android:layout_height="60dp"
         android:src="@drawable/signupfb"
-        android:id="@+id/loginFacebookButton"/>
+        android:id="@+id/loginFacebookButton"
+        android:layout_gravity="center_horizontal" />
 
 
 

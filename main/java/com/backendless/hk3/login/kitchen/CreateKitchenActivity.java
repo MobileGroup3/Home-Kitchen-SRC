@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -21,10 +20,12 @@ import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.files.BackendlessFile;
-import com.backendless.hk3.data.Dish;
+
 import com.backendless.hk3.login.Defaults;
 import com.backendless.hk3.login.R;
-import com.backendless.hk3.data.Kitchen;
+
+import com.backendless.hk3.login.entities.Dish;
+import com.backendless.hk3.login.entities.Kitchen;
 import com.backendless.persistence.BackendlessDataQuery;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageLoader;
@@ -182,7 +183,7 @@ public class CreateKitchenActivity extends Activity {
 
                 if (!zipText.isEmpty()) {
                     zipCode = zipText;
-                    kitchen.setZipCode(zipCode);
+                    kitchen.setZipcode(zipCode);
                 }
 
                 if (!categoryText.isEmpty()) {

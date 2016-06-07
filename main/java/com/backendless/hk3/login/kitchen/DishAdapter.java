@@ -9,8 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.backendless.hk3.data.DishItem;
+
 import com.backendless.hk3.login.R;
+import com.backendless.hk3.login.entities.DishItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

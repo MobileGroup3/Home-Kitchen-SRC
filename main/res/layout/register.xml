@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/dp16">
 
     <EditText
-        android:id="@+id/emialField"
+        android:id="@+id/emailField"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp48"
 

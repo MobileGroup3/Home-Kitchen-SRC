@@ -6,7 +6,6 @@ package com.backendless.hk3.login.kitchen;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,11 +20,12 @@ import android.widget.TextView;
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-import com.backendless.hk3.data.Dish;
-import com.backendless.hk3.data.DishItem;
-import com.backendless.hk3.data.Kitchen;
+
 import com.backendless.hk3.login.Defaults;
 import com.backendless.hk3.login.R;
+import com.backendless.hk3.login.entities.Dish;
+import com.backendless.hk3.login.entities.DishItem;
+import com.backendless.hk3.login.entities.Kitchen;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -169,8 +169,7 @@ public class KitchenHomeActivity extends AppCompatActivity {
         int id=item.getItemId();
         switch (id){
             case R.id.view_order:
-                Intent intent = new Intent(KitchenHomeActivity.this,ViewOrder.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                Intent intent = new Intent(KitchenHomeActivity.this,ViewOrdersActivity.class);
                 startActivity(intent);
                 break;
         }

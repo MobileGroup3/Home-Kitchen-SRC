@@ -6,11 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.backendless.hk3.data.Order;
-import com.backendless.hk3.data.OrderItem;
-import com.backendless.hk3.login.R;
 
-import org.w3c.dom.Text;
+import com.backendless.hk3.login.entities.Order;
+import com.backendless.hk3.login.entities.OrderItem;
 
 import java.util.List;
 
@@ -46,11 +44,11 @@ public class ViewOrderAdapter extends RecyclerView.Adapter<ViewOrderAdapter.MyVi
 
         public MyViewHolder(final View itemView){
             super(itemView);
-            customerNameField=(TextView) itemView.findViewById(R.id.customer_name);
-            dishNameField=(TextView) itemView.findViewById(R.id.dish_name);
-            quatityField=(TextView)itemView.findViewById(R.id.dish_quantity);
-            pickupTimeField=(TextView)itemView.findViewById(R.id.pickuptime);
-            totalField=(TextView)itemView.findViewById(R.id.total);
+//            customerNameField=(TextView) itemView.findViewById(R.id.customer_name);
+//            dishNameField=(TextView) itemView.findViewById(R.id.dish_name);
+//            quatityField=(TextView)itemView.findViewById(R.id.dish_quantity);
+//            pickupTimeField=(TextView)itemView.findViewById(R.id.pickuptime);
+//            totalField=(TextView)itemView.findViewById(R.id.total);
 
         }
     }
