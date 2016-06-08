@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -26,6 +27,8 @@ public class RegisterActivity extends Activity {
     private String password;
 
     private HK3User user;
+    final String customer="Register as a Customer";
+    final String owner="Register as a Kitchen Owner";
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +54,11 @@ public class RegisterActivity extends Activity {
 
     private void onRegisterButtonClicked() {
         String emailText = emailField.getText().toString().trim();
-        String is_k_ownerText = is_k_ownerField.getSelectedItem().toString();
+        final String is_k_ownerText = is_k_ownerField.getSelectedItem().toString();
         String nameText = nameField.getText().toString().trim();
         String passwordText = passwordField.getText().toString().trim();
+        Log.i("k_owner value", is_k_ownerField.getSelectedItem().toString());
+
 
         if (emailText.isEmpty()) {
             showToast("Field 'email' cannot be empty.");
@@ -88,6 +93,12 @@ public class RegisterActivity extends Activity {
         }
 
         if (is_k_owner != null) {
+//            Log.i("k_owner value", String.valueOf(is_k_owner));
+            if(is_k_ownerText.equals(customer)){
+                is_k_owner=false;
+            }
+            else {is_k_owner=true;}
+
             user.setIs_k_owner(is_k_owner);
         }
 
@@ -103,8 +114,11 @@ public class RegisterActivity extends Activity {
             @Override
             public void handleResponse(BackendlessUser response) {
                 super.handleResponse(response);
-                startActivity(new Intent(RegisterActivity.this, RegistrationSuccessActivity.class));
-                finish();
+                Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
+                intent.putExtra("identity",is_k_ownerText);
+                startActivity(intent);
+
+
             }
         });
     }

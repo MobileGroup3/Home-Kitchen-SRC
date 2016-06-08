@@ -20,6 +20,8 @@ public class InitializationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_page);
 
+        getSupportActionBar().hide();
+
         login = (TextView) findViewById(R.id.login_initial);
         login.setOnClickListener(new View.OnClickListener(){
             @Override

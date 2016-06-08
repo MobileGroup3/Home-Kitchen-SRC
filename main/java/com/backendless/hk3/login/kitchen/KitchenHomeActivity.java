@@ -19,13 +19,16 @@ import android.widget.TextView;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessException;
 import com.backendless.exceptions.BackendlessFault;
 
 import com.backendless.hk3.login.Defaults;
+import com.backendless.hk3.login.LoginActivity;
 import com.backendless.hk3.login.R;
 import com.backendless.hk3.login.entities.Dish;
 import com.backendless.hk3.login.entities.DishItem;
 import com.backendless.hk3.login.entities.Kitchen;
+import com.backendless.hk3.login.utility.BackendSettings;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -172,7 +175,21 @@ public class KitchenHomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(KitchenHomeActivity.this,ViewOrdersActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.owner_logout:
+                userLogout();
+                Intent logoutIntent = new Intent(this, LoginActivity.class);
+                startActivity(logoutIntent);
+                finish();
         }
         return true;
+    }
+
+    public void userLogout () {
+        Backendless.initApp(this, BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY, BackendSettings.VERSION);
+        try {
+            Backendless.UserService.logout();
+        } catch (BackendlessException exception) {
+            exception.printStackTrace();
+        }
     }
 }

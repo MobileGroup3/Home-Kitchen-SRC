@@ -2,8 +2,8 @@
 <resources>
     <string-array name="booleans">
         <item></item>
-        <item>Register as a Kitchen Owner</item>
         <item>Register as a Customer</item>
+        <item>Register as a Kitchen Owner</item>
     </string-array>
 
     <string-array name="category">

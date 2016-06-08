@@ -72,7 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="33dp">
+            android:layout_marginTop="33dp"
+            android:weightSum="1">
 
 
             <TextView
@@ -87,12 +88,13 @@
             <Spinner
 
                 android:id="@+id/category"
-                android:layout_width="wrap_content"
+                android:layout_width="101dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp4"
                 android:entries="@array/category"
                 android:gravity="center_vertical"
-                android:textSize="@dimen/text_medium" />
+                android:textSize="@dimen/text_medium"
+                android:layout_weight="0.14" />
 
 
         </LinearLayout>
@@ -136,6 +138,7 @@
                 android:background="@drawable/border_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="Create Your Kitchen"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/white" />
 
 

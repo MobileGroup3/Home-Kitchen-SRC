@@ -70,8 +70,8 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
         navigationView.setNavigationItemSelectedListener(this);
         View headerLayout = navigationView.getHeaderView(0);
 
-        userName = (TextView)headerLayout.findViewById(R.id.user_name);
-        userEmail = (TextView)headerLayout.findViewById(R.id.user_email);
+        userName = (TextView) headerLayout.findViewById(R.id.user_name);
+        userEmail = (TextView) headerLayout.findViewById(R.id.user_email);
 
         /** Lookup the swipe container view */
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
@@ -127,7 +127,7 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-       if (id == R.id.nav_order_history) {
+        if (id == R.id.nav_order_history) {
             Intent intent = new Intent(KitchenHomepageActivity.this, OrderHistoryActivity.class);
             startActivity(intent);
 
@@ -135,10 +135,11 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
             Intent intent = new Intent(KitchenHomepageActivity.this, FollowedKitchenActivity.class);
             startActivity(intent);
 
-        }  else if (id == R.id.nav_log) {
+        } else if (id == R.id.nav_log) {
             userLogout();
             Intent logoutIntent = new Intent(this, LoginActivity.class);
             startActivity(logoutIntent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -219,8 +220,7 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
      * @param totalItemCount   total number of items in list
      * @return true if user is about to reach the end of a list, else false
      */
-    private boolean needToLoadItems( int firstVisibleItem, int visibleItemCount, int totalItemCount )
-    {
+    private boolean needToLoadItems(int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         return !isLoadingItems && totalItemCount != 0 && totalItemCount - (visibleItemCount + firstVisibleItem) < visibleItemCount / 2;
     }
 
@@ -229,9 +229,8 @@ public class KitchenHomepageActivity extends MyAppBaseActivity
      *
      * @param nextPage list of new items
      */
-    private void addMoreItems( BackendlessCollection<Kitchen> nextPage )
-    {
-        totalKitchens.addAll( nextPage.getCurrentPage() );
+    private void addMoreItems(BackendlessCollection<Kitchen> nextPage) {
+        totalKitchens.addAll(nextPage.getCurrentPage());
         adapter.notifyDataSetChanged();
     }
 

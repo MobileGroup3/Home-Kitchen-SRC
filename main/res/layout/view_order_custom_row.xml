@@ -13,38 +13,69 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lightbulb" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Customer Name"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/order_detail_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To be filled"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_marginLeft="5dp" />
+
+
+        </LinearLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/confirmBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/check"
+            android:layout_marginRight="10dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/view_order_customers" />
 
-        <TextView
-            android:id="@+id/customer_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Customer Name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:text="Order Details"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="35dp"-->
+    <!--android:text="Order Details"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
-    <TextView
-        android:id="@+id/order_detail_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:text="To be filled"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <View
         android:layout_width="match_parent"
@@ -61,24 +92,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
             android:text="Pickup Time: " />
 
         <TextView
             android:id="@+id/pickuptime_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total"
-            />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Total" />
 
     </LinearLayout>
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm"
-        android:layout_marginLeft="35dp"
-        android:id="@+id/confirmBtn" />
 
 
 </LinearLayout>

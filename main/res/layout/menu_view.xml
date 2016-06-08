@@ -89,7 +89,8 @@
             android:id="@+id/button_add_dish"
             android:layout_margin="4dp"
             android:background="@drawable/custom_button"
-            android:text="ADD"/>
+            android:text="ADD"
+            android:textColor="@color/mainOrange"/>
 
     </LinearLayout>
 
