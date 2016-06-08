@@ -28,6 +28,7 @@ import com.backendless.hk3.login.entities.DishItem;
 import com.backendless.hk3.login.entities.Order;
 import com.backendless.hk3.login.entities.OrderItem;
 import com.backendless.hk3.login.entities.SimpleCartItem;
+import com.backendless.hk3.login.kitchen_list.KitchenHomepageActivity;
 import com.backendless.hk3.login.utility.BackendSettings;
 import com.backendless.messaging.BodyParts;
 
@@ -216,7 +217,11 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
                         //Test , move toast to saveOrderToDataBase later
                         Toast.makeText(context,"Successful",Toast.LENGTH_SHORT).show();
                         sendEmail();
-                        finish();
+                        Intent homeIntent = new Intent(OrderConformationActivity.this, KitchenHomepageActivity.class);
+                        homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(homeIntent);
+
                     }
                 }).
                 setNegativeButton("No", new DialogInterface.OnClickListener() {
