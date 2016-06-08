@@ -1,4 +1,4 @@
-package com.backendless.hk3.login.entities;
+package com.backendless.hk3.data;
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.BackendlessUser;
@@ -17,18 +17,7 @@ public class Order {
     private java.util.List<OrderItem> orderItem;
     private String kitchen_object_id;
     private String kitchen_name;
-    private boolean is_confirmed;
     double totalAmount;
-
-    public Boolean getIs_confirmed()
-    {
-        return is_confirmed;
-    }
-
-    public void setIs_confirmed( Boolean is_confirmed )
-    {
-        this.is_confirmed = is_confirmed;
-    }
 
     public double getTotalAmount() { return  totalAmount;}
     public void setTotalAmount(double totalAmount) {this.totalAmount = totalAmount; }

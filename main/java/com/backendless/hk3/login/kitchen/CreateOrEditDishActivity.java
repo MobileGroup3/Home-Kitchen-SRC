@@ -111,7 +111,7 @@ public class CreateOrEditDishActivity extends AppCompatActivity {
                 }
 
                 String name=nameField.getText().toString().trim();
-                int price=Integer.parseInt(priceField.getText().toString().trim());
+                double price=Double.parseDouble(priceField.getText().toString().trim());
                 int quantity= Integer.parseInt(quantityField.getText().toString());
                 String description=descriptionField.getText().toString().trim();
 

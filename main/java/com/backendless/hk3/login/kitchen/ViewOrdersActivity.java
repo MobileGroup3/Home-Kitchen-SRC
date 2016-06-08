@@ -3,17 +3,20 @@ package com.backendless.hk3.login.kitchen;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
+import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
 
@@ -99,26 +102,46 @@ public class ViewOrdersActivity extends AppCompatActivity{
             pickupTimeView.setText(order.getPickTime().toString());
 
 
-            Button confirmBtn = (Button) v.findViewById(R.id.confirmBtn);
-            confirmBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Backendless.Messaging.sendHTMLEmail("Order Confirmed", buildEmailHTML(order), order.getCustomer().getEmail(),
-                            new DefaultCallback<Void>(ViewOrdersActivity.this, "Sending confirmation to " + order.getCustomer().getEmail()) {
-                                @Override
-                                public void handleFault(BackendlessFault fault) {
-                                    super.handleFault(fault);
-                                    Toast.makeText(ViewOrdersActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                                }
+            final ImageView confirmBtn = (ImageView) v.findViewById(R.id.confirmBtn);
+            if(order.getIs_confirmed()==false){
+                confirmBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Backendless.Messaging.sendHTMLEmail("Order Confirmed", buildEmailHTML(order), order.getCustomer().getEmail(),
+                                new DefaultCallback<Void>(ViewOrdersActivity.this, "Sending confirmation to " + order.getCustomer().getEmail()) {
+                                    @Override
+                                    public void handleFault(BackendlessFault fault) {
+                                        super.handleFault(fault);
+                                        Toast.makeText(ViewOrdersActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                    }
 
-                                @Override
-                                public void handleResponse(Void response) {
-                                    super.handleResponse(response);
-                                    Toast.makeText(ViewOrdersActivity.this, "Sent", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-            });
+                                    @Override
+                                    public void handleResponse(final Void response) {
+                                        super.handleResponse(response);
+                                        Toast.makeText(ViewOrdersActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                                        order.setIs_confirmed(true);
+                                        Log.i("after set",String.valueOf(order.getIs_confirmed()));
+                                        order.saveAsync(new AsyncCallback<Order>() {
+                                                            @Override
+                                                            public void handleResponse(Order response) {
+                                                                confirmBtn.setVisibility(View.GONE);
+                                                                Log.i("save success",""+String.valueOf(response.getIs_confirmed()));
+                                                            }
+
+                                                            @Override
+                                                            public void handleFault(BackendlessFault fault) {
+                                                                Log.i("saved failed",fault.getMessage()+fault.getDetail());
+                                                            }
+                                                        }
+                                        );
+                                    }
+                                });
+                    }
+                });
+
+            }
+            else confirmBtn.setVisibility(View.GONE);
+
 
             return v;
         }

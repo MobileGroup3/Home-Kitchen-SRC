@@ -5,6 +5,12 @@
     <item
         android:id="@+id/view_order"
         android:orderInCategory="2"
-        app:showAsAction="never"
-        android:title="View Orders"/>
+        android:title="View Orders"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/owner_logout"
+        android:orderInCategory="2"
+        android:title="Logout"
+        app:showAsAction="never" />
 </menu>
