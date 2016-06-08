@@ -18,11 +18,23 @@
         android:layout_marginTop="3dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:id="@+id/text_view_kitchen_name"
-            android:textSize="20dp"/>
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_kitchen_name"
+                android:textSize="20dp"/>
+
+            <ImageView
+                android:layout_height="18dp"
+                android:layout_width="wrap_content"
+                android:baselineAlignBottom="true"
+                android:src="@drawable/jump_icon"/>
+        </LinearLayout>>
 
         <View
             android:layout_width="match_parent"
@@ -72,9 +84,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:id="@+id/layout_dish_two">
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
+                android:layout_height="1dp"
                 android:background="@color/lightGrey" />
 
             <ImageView

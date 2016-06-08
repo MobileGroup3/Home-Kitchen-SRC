@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/lightGrey"
-    tools:context="edu.scu.ytong.placingorder.OrderConformationActivity">
+    tools:context="com.backendless.hk3.login.placingorder.OrderConformationActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -141,22 +141,28 @@
 
         <Button
             android:id="@+id/button_time_picker"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:text="TIME"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/mainOrange"
             android:layout_alignParentRight="true"
             android:onClick="showTimePickerDialog"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
 
         <Button
             android:id="@+id/button_order_conform"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/mainOrange"
+            android:padding="3dp"
             android:text="Conform Order"/>
 
     </RelativeLayout>

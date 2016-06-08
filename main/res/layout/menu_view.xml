@@ -83,12 +83,12 @@
             android:text="Remaining Number"
             android:id="@+id/text_view_remaining_number" />
 
-        <Button
-            android:layout_width="45dp"
+        <TextView
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_add_dish"
             android:layout_margin="4dp"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/border2"
             android:text="ADD"
             android:textColor="@color/mainOrange"/>
 
