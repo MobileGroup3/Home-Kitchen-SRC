@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -123,7 +122,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         TextView dishDescriptionTextView;
         TextView dishPriceTextView;
         TextView dishRemainingNumberTextView;
-        Button dishAddButton;
+        TextView dishAddButton;
 
 
         public MyViewHolder(final View itemView) {
@@ -133,7 +132,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             dishDescriptionTextView = (TextView) itemView.findViewById(R.id.text_view_dish_description);
             dishPriceTextView = (TextView) itemView.findViewById(R.id.text_view_dish_price);
             dishRemainingNumberTextView = (TextView) itemView.findViewById(R.id.text_view_remaining_number);
-            dishAddButton = (Button) itemView.findViewById(R.id.button_add_dish);
+            dishAddButton = (TextView) itemView.findViewById(R.id.button_add_dish);
 
 
         }
