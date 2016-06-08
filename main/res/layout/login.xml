@@ -103,7 +103,7 @@
     <ImageView
         android:layout_width="230dp"
         android:layout_height="60dp"
-        android:src="@drawable/signupfb"
+        android:src="@drawable/newfb_login"
         android:id="@+id/loginFacebookButton"
         android:layout_gravity="center_horizontal" />
 

@@ -11,6 +11,7 @@
         <item>Veggie</item>
         <item>Asian Cuisine</item>
         <item>Thai Cuisine</item>
+        <item>Other</item>
     </string-array>
 
 </resources>
