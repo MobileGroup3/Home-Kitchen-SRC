@@ -26,15 +26,15 @@
         android:layout_height="wrap_content"
         android:background="@color/lightGrey"
         android:id="@+id/text_view_address"
-        android:textSize="18dp"/>
+        android:textSize="14dp"/>
 
     <LinearLayout
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal">
 
         <Space
@@ -44,8 +44,8 @@
 
         <ImageView
             android:id="@+id/image_view_follow_kitchen"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/followed_icon" />
 
         <Space
@@ -55,8 +55,8 @@
 
         <ImageView
             android:id="@+id/image_view_phone_number"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:background="@drawable/phone_icon"
             android:layout_gravity="center_vertical" />
 
@@ -67,8 +67,8 @@
 
         <ImageView
             android:id="@+id/image_view_map"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/map_icon" />
 
         <Space
@@ -82,8 +82,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:text="Today's Menu"
         android:gravity="center_horizontal"
-        android:textColor="@color/orange"/>
+        android:textColor="@color/orange"
+        android:fontFamily="sans-serif-medium" />
 </LinearLayout>

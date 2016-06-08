@@ -16,10 +16,11 @@ import com.squareup.picasso.Picasso;
  */
 public class CrossFadeAdapter extends PagerAdapter {
     private int[] image_resources = {
-            R.drawable.makalong,
-            R.drawable.sushi,
-            R.drawable.kitchen,
-            R.drawable.smoothie};
+            R.drawable.bimbibap,
+            R.drawable.burger,
+            R.drawable.lobster,
+            R.drawable.ramen,
+            R.drawable.chuanchuan};
     private Context context;
     private LayoutInflater layoutInflater;
 
