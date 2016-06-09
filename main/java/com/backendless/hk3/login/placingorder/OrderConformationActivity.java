@@ -208,8 +208,8 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
 
     public void conformOrder() {
         new AlertDialog.Builder(this)
-                .setTitle("Conform Your Order")
-                .setMessage("Do you want to conform your order?")
+                .setTitle("Confirm Your Order")
+                .setMessage("Do you want to confirm your order?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -304,7 +304,8 @@ public class OrderConformationActivity extends AppCompatActivity  implements Tim
     }
 
     public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment(this);
+        TimePickerFragment newFragment = new TimePickerFragment();
+        newFragment.setTimePickListener(this);
         newFragment.show(getSupportFragmentManager(),"timePicker");
 
     }

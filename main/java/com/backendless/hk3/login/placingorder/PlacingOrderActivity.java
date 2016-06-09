@@ -56,7 +56,6 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
     Button checkOutButton;
 
     Button phoneNumberButton;
-    String phoneNumber;
 
     ImageView followKitchenImageView;
 
@@ -263,9 +262,9 @@ public class PlacingOrderActivity extends AppCompatActivity implements DishAdded
 
                     intent.putParcelableArrayListExtra("cart_list_extra_key", simpleCartItemsList);
                     intent.putExtra("total_amount_extra_key", totalAmount);
-                    String address = kitchen.getStreet() + kitchen.getCity() + kitchen.getZipcode();
+                    String address = kitchen.getStreet() + ", " + kitchen.getCity() + ", " + kitchen.getZipcode();
                     intent.putExtra("address_extra_key", address);
-                    intent.putExtra("phone_number_extra_key", phoneNumber);
+                    intent.putExtra("phone_number_extra_key", kitchen.getPhoneNumber());
                     intent.putExtra("kitchen_object_id_extra_key",kitchen.getObjectId());
                     intent.putExtra("kitchen_name_extra_key",kitchen.getKitchenName());
                     intent.putExtra("kitchen_email_extra_key",kitchen.getEmail());

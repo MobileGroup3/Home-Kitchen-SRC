@@ -22,10 +22,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:id="@+id/search_res_title"
         android:text="@string/search_succ"
-        android:textStyle="bold"
-        android:textSize="@dimen/abc_text_size_headline_material"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="invisible"/>
 
     <android.support.v7.widget.RecyclerView
