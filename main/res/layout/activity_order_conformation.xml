@@ -163,7 +163,7 @@
             android:background="@drawable/custom_button"
             android:textColor="@color/mainOrange"
             android:padding="3dp"
-            android:text="Conform Order"/>
+            android:text="Confirm Order"/>
 
     </RelativeLayout>
 

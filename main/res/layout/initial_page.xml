@@ -11,9 +11,9 @@
         android:text="@string/login_initial"
         android:id="@+id/login_initial"
         android:background="@drawable/border"
-        android:fontFamily="Arial"
+        android:fontFamily="sans-serif-light"
         android:textColor="@color/grey"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="59dp" />
+        android:layout_marginBottom="40dp" />
 </RelativeLayout>

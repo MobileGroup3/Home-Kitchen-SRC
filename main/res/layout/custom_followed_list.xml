@@ -39,7 +39,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/followed_imageView"
             android:textSize="@dimen/abc_text_size_medium_material"
-            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
             android:paddingLeft="@dimen/view_horizontal_margin"/>
 
         <TextView

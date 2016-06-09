@@ -11,14 +11,13 @@ import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment {
 
-    TimePickerDialog.OnTimeSetListener listener;
-
-    public TimePickerFragment(TimePickerDialog.OnTimeSetListener listener) {
-
-        this.listener = listener;
-    }
+    public TimePickerDialog.OnTimeSetListener listener;
 
     public TimePickerFragment() {}
+
+    public void setTimePickListener(TimePickerDialog.OnTimeSetListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

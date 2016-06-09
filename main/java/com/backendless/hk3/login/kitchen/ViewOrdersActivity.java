@@ -80,10 +80,12 @@ public class ViewOrdersActivity extends AppCompatActivity{
                 LayoutInflater vi;
                 vi = LayoutInflater.from(getContext());
                 v = vi.inflate(R.layout.view_order_custom_row, null);
+
             }
 
             final Order order = getItem(position);
-
+            final ImageView confirmBtn = (ImageView) v.findViewById(R.id.confirmBtn);
+            confirmBtn.setVisibility(View.VISIBLE);
 
             TextView customerNameView = (TextView) v.findViewById(R.id.customer_name);
             customerNameView.setText(order.getCustomer().getEmail());
@@ -102,7 +104,6 @@ public class ViewOrdersActivity extends AppCompatActivity{
             pickupTimeView.setText(order.getPickTime().toString());
 
 
-            final ImageView confirmBtn = (ImageView) v.findViewById(R.id.confirmBtn);
             if(order.getIs_confirmed()==false){
                 confirmBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -124,7 +125,7 @@ public class ViewOrdersActivity extends AppCompatActivity{
                                         order.saveAsync(new AsyncCallback<Order>() {
                                                             @Override
                                                             public void handleResponse(Order response) {
-                                                                confirmBtn.setVisibility(View.GONE);
+                                                                confirmBtn.setVisibility(View.INVISIBLE);
                                                                 Log.i("save success",""+String.valueOf(response.getIs_confirmed()));
                                                             }
 
@@ -140,7 +141,7 @@ public class ViewOrdersActivity extends AppCompatActivity{
                 });
 
             }
-            else confirmBtn.setVisibility(View.GONE);
+            else confirmBtn.setVisibility(View.INVISIBLE);
 
 
             return v;

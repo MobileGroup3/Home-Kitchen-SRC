@@ -43,10 +43,12 @@
 
         <meta-data
             android:name="android.app.default_searchable"
+            android:screenOrientation="portrait"
             android:value=".SearchableActivity" />
 
         <activity
             android:name=".InitializationActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/InitialPage">
             <intent-filter>
@@ -55,20 +57,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".PasswordRecoveryRequestedActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".RegistrationSuccessActivity" />
-        <activity android:name=".RestorePasswordActivity" />
-        <activity android:name=".LoginSuccessActivity" />
-        <activity android:name=".kitchen.CreateKitchenActivity" />
-        <activity android:name=".kitchen.CreateOrEditDishActivity" />
-        <activity android:name=".kitchen.KitchenHomeActivity" />
-        <activity android:name=".kitchen.NotKitchenOwnerActivity" />
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PasswordRecoveryRequestedActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegistrationSuccessActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RestorePasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginSuccessActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".kitchen.CreateKitchenActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".kitchen.CreateOrEditDishActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".kitchen.KitchenHomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".kitchen.NotKitchenOwnerActivity"
+            android:screenOrientation="portrait"/>
 
 
         <activity
             android:name=".kitchen_list.KitchenHomepageActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize"
             android:theme="@style/HomePageTheme">
             <meta-data
@@ -77,6 +90,7 @@
         </activity>
         <activity
             android:name=".kitchen_list.SearchableActivity"
+            android:screenOrientation="portrait"
             android:launchMode="singleTop"
             android:parentActivityName=".kitchen_list.KitchenHomepageActivity">
             <intent-filter>
@@ -97,6 +111,7 @@
 
         <activity
             android:name=".kitchen_list.FollowedKitchenActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".kitchen_list.KitchenHomepageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -104,19 +119,24 @@
         </activity>
 
         <activity android:name=".placingorder.PlacingOrderActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName="com.backendless.hk3.login.kitchen_list.KitchenHomepageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".kitchen_list.KitchenHomepageActivity"/>
         </activity>
 
-        <activity android:name=".placingorder.OrderConformationActivity" />
-        <activity android:name=".placingorder.OrderHistoryActivity" />
+        <activity android:name=".placingorder.OrderConformationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".placingorder.OrderHistoryActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name="com.backendless.AndroidService" />
 
-        <activity android:name=".utility.ActionBarActivity"></activity>
-        <activity android:name=".kitchen.ViewOrdersActivity"></activity>
+        <activity android:name=".utility.ActionBarActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".kitchen.ViewOrdersActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
